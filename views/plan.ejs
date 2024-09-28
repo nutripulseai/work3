@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/plan.css">
+    <script defer src="/js/plan.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <title>plan</title>
+</head>
+
+<header>
+    <div class="logo">
+        <img src="/imega/doworkoutnow mix.svg" alt="Logo Image">
+    </div>
+    <div class="menu-icon" id="menu-icon">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+    <nav id="nav-menu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/homeworkout/work">Home Workout</a></li>
+            <li><a href="/ai-fitness-app/gptaifitness">AI Fitness App</a></li>
+            <li><a href="/menu-builder">menu builder</a></li>
+            <li><a href="/moreinformation1">About</a></li>
+            <li><a href="#bmr">BMR</a></li>
+            <% if (user) { %>
+                <li><a href="/profile" id="settings-button">Profile</a></li>
+            <% } %>
+            <% if (!user) { %>
+                <li class="auth-buttons">
+                    <a href="/auth/login" class="btn btn-login">Login</a>
+                    <a href="/auth/register" class="btn btn-register">Register</a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
+
+
+
+
+
+<!-- Meta tag for user ID -->
+<!-- Meta tag for user ID -->
+
+
+
+
+
+        <!-- PayPal button container (initially hidden) -->
+      <!-- Add User ID meta tag -->
+     
+      <div id="subscription-plan">
+        <% if (subscriptionStatus === 'active') { %>
+            <p>You already have an active subscription.</p>
+        <% } else { %>
+            <div class="plan">
+                <img src="/imega/plan do work.svg" alt="Plan" class="plan-image">
+            </div>
+    <button class="choose-plan-btn">Choose Plan</button>
+            <!-- PayPal button container -->
+            <div id="paypal-button-wrapper">
+                <div id="paypal-button-container-P"></div>
+            </div>
+    
+            <!-- PayPal SDK -->
+            <script src="https://www.paypal.com/sdk/js?client-id=AX0-tb06-_QlFKuULjmPwcT3y6HN9qeDBE8tEQWRQYDzoS0xtruK_O72SNEgDWzUr8nT8UcaySge3sZB&vault=true&intent=subscription&locale=en_US" data-sdk-integration-source="button-factory"></script>
+    
+            <!-- PayPal Button Script -->
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const choosePlanBtn = document.querySelector('.choose-plan-btn');
+                    let paypalButtonRendered = false; // Flag to track if PayPal button is already rendered
+    
+                    // Wait until PayPal SDK is fully loaded
+                    const waitForPaypal = () => {
+                        if (typeof paypal !== 'undefined') {
+                            return Promise.resolve();
+                        } else {
+                            return new Promise((resolve) => {
+                                const checkPaypal = setInterval(() => {
+                                    if (typeof paypal !== 'undefined') {
+                                        clearInterval(checkPaypal);
+                                        resolve();
+                                    }
+                                }, 100); // Check every 100ms until PayPal is loaded
+                            });
+                        }
+                    };
+    
+                    choosePlanBtn.addEventListener('click', async () => {
+                        console.log('Choose Plan button clicked');
+    
+                        // Wait until PayPal is fully loaded
+                        await waitForPaypal();
+    
+                        if (paypalButtonRendered) {
+                            // If the button is already rendered, remove the existing container and create a new one
+                            const wrapper = document.getElementById('paypal-button-wrapper');
+                            const oldContainer = document.getElementById('paypal-button-container-P');
+                            wrapper.removeChild(oldContainer);
+    
+                            // Create a new container
+                            const newContainer = document.createElement('div');
+                            newContainer.id = 'paypal-button-container-P';
+                            wrapper.appendChild(newContainer);
+                        }
+    
+                        // Render the PayPal button in the new or cleared container
+                        paypal.Buttons({
+                            style: {
+                                shape: 'pill',
+                                color: 'white',
+                                layout: 'vertical',
+                                label: 'paypal'
+                            },
+                            createSubscription: function(data, actions) {
+                                return actions.subscription.create({
+                                    plan_id: 'P-4XP21886MK8068321M3HRN7A' // Your PayPal plan ID
+                                });
+                            },
+                            onApprove: function(data, actions) {
+                                alert('Subscription successful! Subscription ID: ' + data.subscriptionID); // Success message
+                            },
+                            onError: function(err) {
+                                console.error('PayPal error:', err);
+                                alert('An error occurred: ' + err.message); // Error handling
+                            }
+                        }).render('#paypal-button-container-P'); // Render PayPal button
+    
+                        // Mark PayPal button as rendered
+                        paypalButtonRendered = true;
+                    });
+                });
+            </script>
+        <% } %>
+    </div>
+    
+
+
+
+
+

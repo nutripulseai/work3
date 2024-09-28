@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leg Workout Program</title>
+    <link rel="stylesheet" href="/homeworkout/homework.Burn.400.calories/homework.Burn.400.calories.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/imega/doworkoutnow mix.svg" alt="Logo Image">
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/homeworkout/work">Home Workout</a></li>
+                <li><a href="/ai-fitness-app/gptaifitness">AI Fitness App</a></li>
+                <li><a href="/menu-builder">menu builder</a></li>
+                <li><a href="/aboutus">About</a></li>
+                <li><a href="/plan">plan</a></li>
+                <li><a href="#bmr">BMR</a></li>
+                <% if (user) { %>
+                    <li><a href="/profile" id="settings-button">Profile</a></li>
+                <% } %>
+                <% if (!user) { %>
+                    <li class="auth-buttons">
+                        <a href="/auth/login" class="btn btn-login">Login</a>
+                        <a href="/auth/register" class="btn btn-register">Register</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <button id="open-directory-btn" class="button">Open Song Directory</button>
+
+            <!-- Audio elements -->
+            <audio id="song1" src="/audio/11088_Ed Sheeran - Shape of You SHOW2BABI.COM.mp3" preload="auto"></audio>
+            <audio id="song2" src="/audio/Alan Walker - Faded.mp3"></audio>
+            <audio id="song3" src="/audio/BlocBoy JB & Drake _Look Alive_ Prod By_ Tay Keith (Official Music Video) Shot By_ @YooAli.mp3" preload="auto"></audio>
+            <audio id="song4" src="/audio/CENTRAL CEE FT. LIL BABY - BAND4BAND (MUSIC VIDEO).mp3" preload="auto"></audio>
+            <audio id="song5" src="/audio/DaBaby - BOP on Broadway (Hip Hop Musical).mp3" preload="auto"></audio>
+            <audio id="song6" src="/audio/Desiigner - Panda (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song7" src="/audio/DRAM - Broccoli feat. Lil Yachty (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song8" src="/audio/Dua Lipa - New Rules (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song9" src="/audio/Eminem - Love The Way You Lie ft. Rihanna.mp3" preload="auto"></audio>
+            <audio id="song10" src="/audio/Gucci Mane, Bruno Mars, Kodak Black - Wake Up in The Sky [Official Music Video].mp3" preload="auto"></audio>
+            <audio id="song11" src="/audio/Imagine Dragons - Believer (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song12" src="/audio/Justin Bieber - Sorry (PURPOSE _ The Movement).mp3" preload="auto"></audio>
+            <audio id="song13" src="/audio/Major Lazer & DJ Snake - Lean On (feat. MØ) [Official Music Video].mp3" preload="auto"></audio>
+            <audio id="song14" src="/audio/Stromae - papaoutai (Official Video).mp3" preload="auto"></audio>
+            <audio id="song15" src="/audio/Maroon 5 - Girls Like You ft. Cardi B (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song16" src="/audio/NBA YoungBoy - Vette Motors.mp3" preload="auto"></audio>
+            <audio id="song17" src="/audio/OneRepublic - Counting Stars.mp3" preload="auto"></audio>
+            <audio id="song18" src="/audio/referee-whistle-blow-gymnasium-6320.mp3" preload="auto"></audio>
+            <audio id="song19" src="/audio/Sia - Chandelier (Official Video).mp3" preload="auto"></audio>
+            <audio id="song20" src="/audio/Travis Scott - goosebumps ft. Kendrick Lamar.mp3" preload="auto"></audio>
+            <audio id="song21" src="/audio/24kGoldn - Mood (Official Video) ft. iann dior.mp3"></audio>
+            <audio id="song22" src="/audio/Ariana Grande ft. Nicki Minaj - Side To Side (Official Video) ft. Nicki Minaj.mp3" preload="auto"></audio>
+            <audio id="song23" src="/audio/Aya Nakamura - Djadja (Clip officiel).mp3" preload="auto"></audio>
+            <audio id="song24" src="/audio/Cardi B, Bad Bunny & J Balvin - I Like It [Official Music Video].mp3" preload="auto"></audio>
+            <audio id="song25" src="/audio/Childish Gambino - This Is America (Official Video).mp3" preload="auto"></audio>
+            <audio id="song26" src="/audio/CKay - Love Nwantiti Remix ft. Joeboy & Kuami Eugene [Ah Ah Ah] [Official Music Video].mp3" preload="auto"></audio>
+            <audio id="song27" src="/audio/Diplo, French Montana & Lil Pump ft. Zhavia Ward - Welcome To The Party (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song28" src="/audio/DJ Khaled - I'm The One ft. Justin Bieber, Quavo, Chance the Rapper, Lil Wayne.mp3" preload="auto"></audio>
+            <audio id="song29" src="/audio/DJ Snake, Lil Jon - Turn Down for What.mp3" preload="auto"></audio>
+            <audio id="song30" src="/audio/Drake - God's Plan.mp3" preload="auto"></audio>
+            <audio id="song31" src="/audio/Drake - Toosie Slide (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song32" src="/audio/Eminem - Godzilla ft. Juice WRLD (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song33" src="/audio/Future, Metro Boomin, Travis Scott, Playboi Carti - Type Shit (Official Video).mp3" preload="auto"></audio>
+            <audio id="song34" src="/audio/Jason Derulo - Swalla (feat. Nicki Minaj & Ty Dolla $ign) [Official Music Video].mp3" preload="auto"></audio>
+            <audio id="song35" src="/audio/Jessie J - Bang Bang ft. Ariana Grande, Nicki Minaj.mp3" preload="auto"></audio>
+            <audio id="song36" src="/audio/Katy Perry - Dark Horse ft. Juicy J.mp3" preload="auto"></audio>
+            <audio id="song37" src="/audio/Kodak Black - ZEZE (feat. Travis Scott & Offset) [Official Audio].mp3" preload="auto"></audio>
+            <audio id="song38" src="/audio/Lil Nas X - HOLIDAY (Official Video).mp3" preload="auto"></audio>
+            <audio id="song39" src="/audio/Lil Nas X - Old Town Road (Official Video) ft. Billy Ray Cyrus.mp3" preload="auto"></audio>
+            <audio id="song40" src="/audio/Lil Nas X, Jack Harlow - INDUSTRY BABY (Official Video).mp3"></audio>
+            <audio id="song41" src="/audio/Lil Uzi Vert - XO Tour Llif3 (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song42" src="/audio/LSD - Genius ft. Sia, Diplo, Labrinth.mp3" preload="auto"></audio>
+            <audio id="song43" src="/audio/Marshmello & Anne-Marie - FRIENDS (Lyric Video) _OFFICIAL FRIENDZONE ANTHEM_.mp3" preload="auto"></audio>
+            <audio id="song44" src="/audio/Naughty Boy - La la la ft. Sam Smith (Official Video).mp3" preload="auto"></audio>
+            <audio id="song45" src="/audio/Post Malone ft. 21 Savage - rockstar (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="song46" src="/audio/Rae Sremmurd - Black Beatles ft. Gucci Mane (Official Video).mp3" preload="auto"></audio>
+            <audio id="song47" src="/audio/Ramz - Barking [Music Video] _ GRM Daily.mp3" preload="auto"></audio>
+            <audio id="song48" src="/audio/Silentó - Watch Me (Whip_Nae Nae) (Official).mp3" preload="auto"></audio>
+            <audio id="song49" src="/audio/SKRILLEX - Bangarang feat. Sirah [Official Music Video].mp3" preload="auto"></audio>
+            <audio id="song50" src="/audio/StaySolidRocky- Party Girl (Official Music Video).mp3" preload="auto"></audio>
+            <audio id="whistle-sound" src="/audio/referee-whistle-blow-gymnasium-6320.mp3" preload="auto"></audio>
+
+            <!-- Modal for the song library -->
+            <div id="song-library" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <ul id="song-list">
+                        <li><button class="button" onclick="playSong('song0')">Stop Music</button></li>
+                        <li><button class="button" onclick="playSong('song1')">Shape of You - Ed Sheeran</button></li>
+                        <li><button class="button" onclick="playSong('song2')">Faded - Alan Walker</button></li>
+                        <li><button class="button" onclick="playSong('song3')">Look Alive - BlocBoy JB & Drake</button></li>
+                        <li><button class="button" onclick="playSong('song4')">Band4Band - Central Cee ft. Lil Baby</button></li>
+                        <li><button class="button" onclick="playSong('song5')">BOP on Broadway - DaBaby</button></li>
+                        <li><button class="button" onclick="playSong('song6')">Panda - Desiigner</button></li>
+                        <li><button class="button" onclick="playSong('song7')">Broccoli - DRAM ft. Lil Yachty</button></li>
+                        <li><button class="button" onclick="playSong('song8')">New Rules - Dua Lipa</button></li>
+                        <li><button class="button" onclick="playSong('song9')">Love The Way You Lie - Eminem ft. Rihanna</button></li>
+                        <li><button class="button" onclick="playSong('song10')">Wake Up in The Sky - Gucci Mane, Bruno Mars, Kodak Black</button></li>
+                        <li><button class="button" onclick="playSong('song11')">Believer - Imagine Dragons</button></li>
+                        <li><button class="button" onclick="playSong('song12')">Sorry - Justin Bieber</button></li>
+                        <li><button class="button" onclick="playSong('song13')">Lean On - Major Lazer & DJ Snake</button></li>
+                        <li><button class="button" onclick="playSong('song14')">papaoutai - Stromae</button></li>
+                        <li><button class="button" onclick="playSong('song15')">Girls Like You - Maroon 5 ft. Cardi B</button></li>
+                        <li><button class="button" onclick="playSong('song16')">Vette Motors - NBA YoungBoy</button></li>
+                        <li><button class="button" onclick="playSong('song17')">Counting Stars - OneRepublic</button></li>
+                        <li><button class="button" onclick="playSong('song18')">Whistle Sound</button></li>
+                        <li><button class="button" onclick="playSong('song19')">Chandelier - Sia</button></li>
+                        <li><button class="button" onclick="playSong('song20')">Travis Scott - goosebumps</button></li>
+                        <li><button class="button" onclick="playSong('song21')">Mood - 24kGoldn ft. iann dior</button></li>
+                        <li><button class="button" onclick="playSong('song22')">Side To Side - Ariana Grande ft. Nicki Minaj</button></li>
+                        <li><button class="button" onclick="playSong('song23')">Djadja - Aya Nakamura</button></li>
+                        <li><button class="button" onclick="playSong('song24')">I Like It - Cardi B, Bad Bunny & J Balvin</button></li>
+                        <li><button class="button" onclick="playSong('song25')">This Is America - Childish Gambino</button></li>
+                        <li><button class="button" onclick="playSong('song26')">Love Nwantiti Remix - CKay ft. Joeboy & Kuami Eugene</button></li>
+                        <li><button class="button" onclick="playSong('song27')">Welcome To The Party - Diplo, French Montana & Lil Pump ft. Zhavia Ward</button></li>
+                        <li><button class="button" onclick="playSong('song28')">I'm The One - DJ Khaled ft. Justin Bieber, Quavo, Chance the Rapper, Lil Wayne</button></li>
+                        <li><button class="button" onclick="playSong('song29')">Turn Down for What - DJ Snake, Lil Jon</button></li>
+                        <li><button class="button" onclick="playSong('song30')">God's Plan - Drake</button></li>
+                        <li><button class="button" onclick="playSong('song31')">Toosie Slide - Drake</button></li>
+                        <li><button class="button" onclick="playSong('song32')">Godzilla - Eminem ft. Juice WRLD</button></li>
+                        <li><button class="button" onclick="playSong('song33')">Type Shit - Future, Metro Boomin, Travis Scott, Playboi Carti</button></li>
+                        <li><button class="button" onclick="playSong('song34')">Swalla - Jason Derulo ft. Nicki Minaj & Ty Dolla $ign</button></li>
+                        <li><button class="button" onclick="playSong('song35')">Bang Bang - Jessie J ft. Ariana Grande, Nicki Minaj</button></li>
+                        <li><button class="button" onclick="playSong('song36')">Dark Horse - Katy Perry ft. Juicy J</button></li>
+                        <li><button class="button" onclick="playSong('song37')">ZEZE - Kodak Black ft. Travis Scott & Offset</button></li>
+                        <li><button class="button" onclick="playSong('song38')">HOLIDAY - Lil Nas X</button></li>
+                        <li><button class="button" onclick="playSong('song39')">Old Town Road - Lil Nas X ft. Billy Ray Cyrus</button></li>
+                        <li><button class="button" onclick="playSong('song40')">INDUSTRY BABY - Lil Nas X, Jack Harlow</button></li>
+                        <li><button class="button" onclick="playSong('song41')">XO Tour Llif3 - Lil Uzi Vert</button></li>
+                        <li><button class="button" onclick="playSong('song42')">Genius - LSD ft. Sia, Diplo, Labrinth</button></li>
+                        <li><button class="button" onclick="playSong('song43')">FRIENDS - Marshmello & Anne-Marie</button></li>
+                        <li><button class="button" onclick="playSong('song44')">La la la - Naughty Boy ft. Sam Smith</button></li>
+                        <li><button class="button" onclick="playSong('song45')">rockstar - Post Malone ft. 21 Savage</button></li>
+                        <li><button class="button" onclick="playSong('song46')">Black Beatles - Rae Sremmurd ft. Gucci Mane</button></li>
+                        <li><button class="button" onclick="playSong('song47')">Barking - Ramz</button></li>
+                        <li><button class="button" onclick="playSong('song48')">Watch Me (Whip/Nae Nae) - Silentó</button></li>
+                        <li><button class="button" onclick="playSong('song49')">Bangarang - Skrillex ft. Sirah</button></li>
+                        <li><button class="button" onclick="playSong('song50')">Party Girl - StaySolidRocky</button></li>
+                        <li><button class="button" onclick="playSong('whistle-sound')">Whistle Sound</button></li>
+                        
+                    </ul>
+                </div>
+            </div>
+<!-- Restart Workout Button -->
+
+
+            <!-- Start Workout Section -->
+            <div id="start-workout-section">
+                <h2>Home aerobic training (400 Calories) <br>
+                    Total Time: ~25 minutes <br>
+                    Calories Burned: ~ 400 calories
+                </h2>
+                <img src="/gypplanimg/homework.Burn.400.calories.svg" alt="Start Workout" class="start-img">
+                <button id="start-workout-btn" onclick="startWorkout()">Start Workout</button>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress">
+                    <span id="calories-burned">0 caloriot</span>
+                </div>
+            </div>
+            <!-- Exercise Container (initially hidden) -->
+            <div id="exercise-container" style="display: none;">
+            
+                <!-- Exercise 1: Push-Ups -->
+                <div class="exercise" id="exercise1" style="display: none;">
+                    <h2>Jumping Jacks.
+
+                        Duration: 2 minutes.
+                        Jump with legs wide and arms overhead, then return to start position.                        
+                    </h2>
+                    <img src="/Traininggif/Jumping Jacks.gif" alt="Push Ups">
+                    <p>Time remaining: <span id="timer1"></span> seconds</p>
+                </div>
+            
+                <!-- Exercise 2: Pike Push-Ups -->
+                <div class="exercise" id="exercise2" style="display: none;">
+                    <h2>High Knees.
+
+                        Duration: 2 minutes.
+                        Jog in place, bringing knees up to hip level and pumping arms.
+                    </h2>
+                    <img src="/Traininggif/High Knees..gif" alt="Pike Push Ups">
+                    <p>Time remaining: <span id="timer2"></span> seconds</p>
+                </div>
+            
+                <!-- Exercise 3: Diamond Push-Ups -->
+                <div class="exercise" id="exercise3" style="display: none;">
+                    <h2>Burpees.
+
+                        Duration: 2 minutes.
+                        Squat, jump to plank, do a push-up, jump back, and leap up.
+                    </h2>
+                    <img src="/Traininggif/burpees.gif" alt="Diamond Push Ups">
+                    <p>Time remaining: <span id="timer3"></span> seconds</p>
+                </div>
+            
+                <!-- Exercise 4: Plank -->
+                <div class="exercise" id="exercise4" style="display: none;">
+                    <h2>Mountain Climbers.
+
+                        Duration: 2 minutes.
+                        In a plank position, alternate bringing knees towards your chest quickly.                  
+                    </h2>
+                    <img src="/Traininggif/Mountain Climbers straight.gif" alt="Plank">
+                    <p>Time remaining: <span id="timer4"></span> seconds</p>
+                </div>
+            
+                <!-- Exercise 5: Bicycle Crunches -->
+                <div class="exercise" id="exercise5" style="display: none;">
+                    <h2>Bodyweight Squats.
+
+                        Duration: 2 minutes.
+                        Stand with feet shoulder-width apart, lower into a squat, and push through heels to stand.
+                    </h2>
+                    <img src="/Traininggif/Bodyweight Squats..gif" alt="Bicycle Crunches">
+                    <p>Time remaining: <span id="timer5"></span> seconds</p>
+                </div>
+            
+                <!-- Exercise 6: Leg Raises -->
+                <div class="exercise" id="exercise6" style="display: none;">
+                    <h2>Push-Ups.
+
+                        Duration: 2 minutes.
+                        Start in a plank position, lower your body until chest nearly touches the floor, then push back up. Modify by going to your knees if needed.
+                    </h2>
+                    <img src="/Traininggif/Push-Ups.gif" alt="Leg Raises">
+                    <p>Time remaining: <span id="timer6"></span> seconds</p>
+                </div>
+            
+                <!-- Exercise 7: Russian Twists -->
+                <div class="exercise" id="exercise7" style="display: none;">
+                    <h2>Lunges (Alternating).
+
+                        Duration: 2 minutes.
+                        Step forward with one leg into a lunge, then return and switch legs.                 
+                    </h2>
+                    <img src="/Traininggif/Lunges.gif" alt="Russian Twists">
+                    <p>Time remaining: <span id="timer7"></span> seconds</p>
+                </div>
+            
+
+                <div class="exercise" id="exercise8" style="display: none;">
+                    <h2>Plank.
+
+                        Duration: 2 minutes.
+                        Hold a plank position with a straight line from head to heels, keeping your core tight.
+                    </h2>
+                    <img src="/Traininggif/Plank.gif" alt="Russian Twists">
+                    <p>Time remaining: <span id="timer8"></span> seconds</p>
+                </div>
+
+
+                <div class="exercise" id="exercise9" style="display: none;">
+                    <h2>Jump Squats.
+
+                        Duration: 2 minutes.
+                        Perform a squat and jump explosively, then land softly and go back into a squat.
+                    </h2>
+                    <img src="/Traininggif/Jump Squats.gif" alt="Russian Twists">
+                    <p>Time remaining: <span id="timer9"></span> seconds</p>
+                </div>
+
+
+                <div class="exercise" id="exercise10" style="display: none;">
+                    <h2>Bicycle Crunches.
+
+                        Duration: 2 minutes.
+                        Lie on your back, alternate bringing opposite elbow to knee while extending the other leg.
+                    </h2>
+                    <img src="/Traininggif/Bicycle Crunches.gif" alt="Russian Twists">
+                    <p>Time remaining: <span id="timer10"></span> seconds</p>
+                </div>
+
+
+
+                <div class="exercise" id="exercise11" style="display: none;">
+                    <h2>Walking in Place.
+
+                        Duration: 2 minutes.
+                        Walk slowly to bring your heart rate down.
+                    </h2>
+                    <img src="/Traininggif/Walking..gif" alt="Russian Twists">
+                    <p>Time remaining: <span id="timer11"></span> seconds</p>
+                </div>
+
+
+            </div>
+            
+            <!-- Break Section -->
+            <div id="break-container" style="display: none;">
+                <p id="break-timer">Break Time: <span id="break-seconds">10</span> seconds</p>
+                <button id="add-break-time-button" onclick="addBreakTime()">Add 20 Seconds</button>
+            </div>
+            
+            <!-- Workout Completed Section -->
+            <div id="training-completed-section" style="display: none;">
+                <h2>Workout Completed!<br>
+                    You burned 400 calories!!🎉
+                </h2>
+                <a href="/homeworkout/work.html" class="completed-link">Back to Home Workout</a>
+            </div>
+            
+            <div id="exercise-timer">0</div> <!-- Default value, will be updated by JS -->
+
+
+            <!-- Exercise Timer -->
+<div id="exercise-timer" style="display: none;">
+    Time remaining: <span id="exercise-timer-display">0</span> seconds
+</div>
+
+<!-- Break Timer -->
+<div id="break-container" style="display: none;">
+    Break Time: <span id="break-timer">0</span> seconds
+</div>
+
+            <!-- Audio for Completion -->
+            <audio id="clap-sound" src="/audio/24kGoldn - Mood (Official Video) ft. iann dior.mp3"></audio>
+            
+        <script>
+            
+let currentExercise = 1;
+let totalExercises = 11;
+let breakTime = 30;
+let progressBarIncrement = 100 / totalExercises;
+let breakTimerInterval = null;
+let isTransitioning = false;
+let isWorkoutPaused = false;
+let isSpeaking = false;
+let exerciseTimerInterval = null;
+const totalCalories = 400; // Total calories to be burned in the workout
+const caloriesPerExercise = totalCalories / totalExercises; // Calories burned per exercise
+let caloriesBurned = 0; // Initialize calories burned
+
+
+
+function startExerciseTimer(duration) {
+    // Clear any existing exercise timer intervals
+    if (exerciseTimerInterval) {
+        clearInterval(exerciseTimerInterval);
+        exerciseTimerInterval = null;
+    }
+
+    // Ensure the timer is visible
+    const timerDisplay = document.getElementById('exercise-timer');
+    timerDisplay.innerText = duration; // Set initial timer display
+    timerDisplay.style.display = 'block';
+
+    let exerciseTime = duration; // Initialize exercise time
+
+    // Stop any ongoing speech synthesis
+    if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+    }
+
+    // Set up the interval to update the exercise timer
+    exerciseTimerInterval = setInterval(() => {
+        // Update the remaining time
+        if (exerciseTime > 0) {
+            exerciseTime--;
+            timerDisplay.innerText = exerciseTime; // Update the timer display
+
+            // Announce the countdown only if it's the last 10 seconds
+            if (exerciseTime <= 10 && exerciseTime > 0 && !speechSynthesis.speaking) {
+                let countdownUtterance = new SpeechSynthesisUtterance(exerciseTime.toString());
+                countdownUtterance.lang = 'en-US';
+                countdownUtterance.volume = 1.0;
+                speechSynthesis.speak(countdownUtterance);
+            }
+        } else {
+            // Clear the timer when exercise time is over
+            clearInterval(exerciseTimerInterval);
+            exerciseTimerInterval = null;
+            timerDisplay.innerText = '0'; // Show 0 when timer ends
+
+            // Announce "Exercise Complete"
+            let exerciseCompleteUtterance = new SpeechSynthesisUtterance('Exercise Complete');
+            exerciseCompleteUtterance.lang = 'en-US';
+            exerciseCompleteUtterance.volume = 1.0;
+            speechSynthesis.speak(exerciseCompleteUtterance);
+
+            // Complete the exercise when timer ends
+            completeExercise();
+        }
+
+        // Debugging output
+        console.log(`Exercise time: ${exerciseTime}`);
+    }, 1000);
+
+    // Debugging output
+    console.log(`Exercise timer started for ${duration} seconds`);
+}
+
+
+
+
+
+
+const exerciseDurations = {
+1: 120, // Exercise 1 duration in seconds
+2: 120, // Exercise 2 duration in seconds
+3: 120, // Exercise 3 duration in seconds
+4: 120, // Exercise 3 duration in seconds
+5: 120, // Exercise 3 duration in seconds
+6: 120, // Exercise 3 duration in seconds
+7: 120, // Exercise 3 duration in seconds
+8: 120, // Exercise 3 duration in seconds
+9: 120, // Exercise 3 duration in seconds
+10: 120, // Exercise 3 duration in seconds
+11: 120, // Exercise 3 duration in seconds
+};
+
+// Function to open the song library modal
+function openSongLibrary() {
+document.getElementById('song-library').style.display = 'block';
+}
+
+// Function to close the song library modal
+function closeSongLibrary() {
+document.getElementById('song-library').style.display = 'none';
+}
+
+// Add event listeners for opening and closing the song library modal
+document.getElementById('open-directory-btn').addEventListener('click', openSongLibrary);
+document.querySelector('.close-btn').addEventListener('click', closeSongLibrary);
+
+// Close modal when clicking outside the modal content
+window.addEventListener('click', (event) => {
+if (event.target === document.getElementById('song-library')) {
+    closeSongLibrary();
+}
+});
+
+// Function to play a specific song
+function playSong(songId) {
+    stopAllMusic();
+    let song = document.getElementById(songId);
+    if (song) {
+        song.volume = 0.3;
+        song.play().catch(error => {
+            console.error(`Failed to play song with ID ${songId}:`, error);
+        });
+        song.onended = function() {
+            let nextSongId = getNextSongId(songId);
+            if (nextSongId) {
+                playSong(nextSongId);
+            }
+        };
+    } else {
+        console.error(`Song with ID ${songId} not found.`);
+    }
+}
+
+// Function to get the ID of the next song
+function getNextSongId(currentSongId) {
+let songIds = ['song1', 'song2', 'song3', 'song4', 'song5', 'song6', 'song7', 'song8', 'song9', 'song10', 'song11', 'song12', 'song13', 'song14', 'song15', 'song16', 'song17', 'song18', 'song19', 'song20', 'song21', 'song22', 'song23', 'song24', 'song25', 'song26', 'song27', 'song28', 'song29', 'song30', 'song31', 'song32', 'song33', 'song34', 'song35', 'song36', 'song37', 'song38','song39', 'song40', 'song41', 'song42', 'song43', 'song44', 'song45', 'song46', 'song47', 'song48', 'song49', 'song50', 'whistle-sound'];
+let currentIndex = songIds.indexOf(currentSongId);
+return songIds[currentIndex + 1] || null;
+}
+
+// Function to stop all music
+function stopAllMusic() {
+let songs = document.querySelectorAll('audio[id^="song"]');
+songs.forEach(song => {
+    song.pause();
+    song.currentTime = 0;
+});
+}
+
+// Function to start the workout
+function startWorkout() {
+document.getElementById('start-workout-section').style.display = 'none';
+document.getElementById('exercise-container').style.display = 'block';
+
+// Make the exercise timer visible
+document.getElementById('exercise-timer').style.display = 'block';
+
+startExercise(1);
+}
+
+// Function to start the exercise
+function startExercise(exerciseNumber) {
+    if (isWorkoutPaused) return;
+
+    // Hide the previous exercise if it's not the first exercise
+    if (currentExercise > 1) {
+        let previousExerciseElement = document.getElementById(`exercise${currentExercise}`);
+        if (previousExerciseElement) {
+            previousExerciseElement.style.display = 'none';
+        }
+    }
+
+    // Update currentExercise to the new exercise
+    currentExercise = exerciseNumber;
+
+    let exerciseElement = document.getElementById(`exercise${exerciseNumber}`);
+    if (exerciseElement) {
+        exerciseElement.style.display = 'block';
+
+        // Get the duration for the current exercise
+        let exerciseDuration = exerciseDurations[exerciseNumber] || 30; // Default to 30 seconds if not defined
+
+        // Show the exercise timer and hide the break timer
+        document.getElementById('exercise-timer').style.display = 'block';
+        document.getElementById('break-container').style.display = 'none';
+
+        // Get the exercise name from the <h2> element
+        let exerciseName = exerciseElement.querySelector('h2') ? exerciseElement.querySelector('h2').innerText : 'Exercise';
+
+        // Cancel any ongoing speech to avoid overlap
+        speechSynthesis.cancel();
+
+        // Create and speak the exercise name
+        let exerciseNameUtterance = new SpeechSynthesisUtterance(exerciseName);
+        exerciseNameUtterance.lang = 'en-US';
+        exerciseNameUtterance.volume = 1.0;
+
+        // Start the exercise timer immediately
+        startExerciseTimer(exerciseDuration);
+
+        // Start the speech
+        speechSynthesis.speak(exerciseNameUtterance);
+
+        // Handle completion of speech
+        exerciseNameUtterance.onend = () => {
+            console.log(`Starting Exercise ${exerciseNumber}: ${exerciseName}`);
+        };
+
+        // Log current state for debugging
+        console.log(`Starting Exercise ${exerciseNumber}: ${exerciseName}`);
+    } else {
+        console.error(`Exercise element with ID exercise${exerciseNumber} not found.`);
+    }
+}
+
+
+
+
+
+// Function to announce the current exercise
+function announceExercise(exerciseNumber) {
+    if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+    }
+
+    let exerciseElement = document.getElementById(`exercise${exerciseNumber}`);
+    let exerciseName = exerciseElement.querySelector('h2').innerText;
+
+    let utterance = new SpeechSynthesisUtterance(exerciseName);
+    utterance.lang = 'en-US';
+    utterance.volume = 1.0;
+    speechSynthesis.speak(utterance);
+    isSpeaking = true;
+
+    utterance.onend = function() {
+        isSpeaking = false;
+    };
+}
+
+function completeExercise() {
+    if (isTransitioning || isWorkoutPaused) return;
+
+    isTransitioning = true;
+
+    if (isSpeaking) {
+        speechSynthesis.cancel();
+        isSpeaking = false;
+    }
+
+    // Hide the current exercise
+    let currentExerciseNumber = currentExercise;
+    let currentExerciseElement = document.getElementById(`exercise${currentExerciseNumber}`);
+    if (currentExerciseElement) {
+        currentExerciseElement.style.display = 'none';
+    }
+
+    updateProgressBar();
+
+    // Hide the exercise timer
+    document.getElementById('exercise-timer').style.display = 'none';
+
+    // Determine if there's a need for a break and transition accordingly
+    if (currentExercise < totalExercises) {
+        // Show and start the break timer only if there are more exercises
+        document.getElementById('break-container').style.display = 'block';
+        startBreakTimer();
+    } else {
+        // End workout if all exercises are completed
+        stopAllMusic();
+        document.getElementById('training-completed-section').style.display = 'block';
+        console.log('All exercises completed.');
+        isTransitioning = false; // Reset transitioning flag
+        return; // Exit function
+    }
+
+    // Move to the next exercise after the break
+    setTimeout(() => {
+        if (currentExercise < totalExercises) {
+            currentExercise++; // Move to the next exercise
+            startExercise(currentExercise); // Start the next exercise
+        }
+        isTransitioning = false; // Ensure this is reset
+    }, breakDuration * 1000); // Assuming breakDuration is in seconds
+}
+
+
+// Function to start exercise timer
+
+
+
+// Function to start the break timer
+
+
+function startBreakTimer() {
+    // Announce the start of the break, if not a continuation of an added break
+    if (typeof breakTime !== 'number' || breakTime <= 0) {
+        breakTime = 30; // Default break time if not properly set
+    }
+
+    let breakStartUtterance = new SpeechSynthesisUtterance('Break Time');
+    breakStartUtterance.lang = 'en-US';
+    breakStartUtterance.volume = 1.0;
+    speechSynthesis.speak(breakStartUtterance);
+
+    // Clear any existing break timer intervals
+    if (breakTimerInterval) {
+        clearInterval(breakTimerInterval);
+    }
+
+    // Initialize the break time display
+    document.getElementById('break-timer').innerText = breakTime;
+
+    // Show the break container and hide the exercise timer
+    document.getElementById('break-container').style.display = 'block';
+    document.getElementById('exercise-timer').style.display = 'none';
+
+    // Set up the interval to update the break timer
+    breakTimerInterval = setInterval(() => {
+        if (breakTime > 0) {
+            breakTime--;
+            document.getElementById('break-timer').innerText = breakTime;
+
+            // Announce the countdown every second if it's 10 seconds or less
+            if (breakTime <= 10 && breakTime > 0) {
+                let countdownUtterance = new SpeechSynthesisUtterance(breakTime.toString());
+                countdownUtterance.lang = 'en-US';
+                countdownUtterance.volume = 1.0;
+                speechSynthesis.speak(countdownUtterance);
+            }
+        } else {
+            clearInterval(breakTimerInterval);
+            breakTimerInterval = null;
+            document.getElementById('break-container').style.display = 'none';
+
+            // Play the whistle sound immediately
+            playWhistleSound();
+
+            // Transition to the next exercise or end the workout
+            completeExercise(); // Ensure this function properly handles moving to the next exercise or ending the workout
+        }
+    }, 1000);
+}
+
+
+
+
+// Function to play the whistle sound and start the next exercise
+function playWhistleSound() {
+let whistleSound = document.getElementById('whistle-sound');
+if (whistleSound) {
+    whistleSound.play().catch(error => {
+        console.error('Failed to play whistle sound:', error);
+    });
+}
+
+// Start the next exercise immediately after playing the whistle sound
+setTimeout(() => {
+    if (currentExercise < totalExercises) {
+        startExercise(++currentExercise);
+    } else {
+        stopAllMusic();
+        document.getElementById('training-completed-section').style.display = 'block';
+    }
+    isTransitioning = false;
+}, 0); // No delay
+}
+
+// Function to add break time
+function addBreakTime() {
+    // Ensure breakTime is defined and is a number
+    if (typeof breakTime === 'number') {
+        breakTime += 20; // Add 20 seconds to the current break time
+        
+        // Update the break timer display
+        document.getElementById('break-timer').innerText = breakTime;
+
+        // If the break timer is currently running, reset it with the updated time
+        if (breakTimerInterval) {
+            clearInterval(breakTimerInterval);
+            startBreakTimer(); // Restart the timer with the updated break time
+        }
+    } else {
+        console.error('breakTime is not a number');
+    }
+}
+// Function to update the progress bar
+function updateProgressBar() {
+    // Select the progress bar and calories text elements
+    let progressElement = document.querySelector('.progress');
+    let caloriesTextElement = document.getElementById('calories-burned');
+
+    // Calculate and update the width of the progress bar
+    let progressPercentage = currentExercise * progressBarIncrement;
+    progressElement.style.width = `${progressPercentage}%`;
+
+    // Update calories burned
+    caloriesBurned += caloriesPerExercise;
+    caloriesTextElement.innerText = `${caloriesBurned.toFixed(0)}🔥`;
+
+    // Calculate the width of the progress bar container
+    let progressBarContainer = progressElement.parentElement;
+    let containerWidth = progressBarContainer.offsetWidth;
+
+    // Calculate the width of the calories text
+    let textWidth = caloriesTextElement.offsetWidth;
+
+    // Calculate the position of the calories text
+    let maxLeftPosition = containerWidth - textWidth;
+    let leftPosition = progressPercentage * containerWidth / 100 - textWidth / 2;
+
+    // Ensure the text does not overflow the container
+    leftPosition = Math.max(0, Math.min(leftPosition, maxLeftPosition));
+
+    // Set the position of the calories text
+    caloriesTextElement.style.left = `${leftPosition}px`;
+}
+
+
+
+// Function to pause the workout
+function pauseWorkout() {
+isWorkoutPaused = true;
+
+if (speechSynthesis.speaking) {
+    speechSynthesis.cancel();
+    isSpeaking = false;
+}
+stopAllMusic();
+}
+
+// Function to resume the workout
+function resumeWorkout() {
+isWorkoutPaused = false;
+if (currentExercise <= totalExercises) {
+    startExercise(currentExercise);
+}
+}
+
+// Function to complete the workout
+function completeWorkout() {
+stopAllMusic();
+document.getElementById('training-completed-section').style.display = 'block';
+}
+        </script>
+                                                                                                                                                                                                                                                                                          
+           <style>
+             body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+  width: 100%; /* Ensures the width is 100% of the viewport */
+  padding: 0; 
+    align-items: center;
+    min-height: 100vh; /* This ensures the body takes up the full height of the viewport */
+    justify-content: center;
+    
+    
+}
+
+* {
+    box-sizing: border-box; /* Makes sure padding and border are included in the width */
+  }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    height: 50px; /* Adjust the size of your logo image */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px; /* Adjust height to ensure space for bars */
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon .bar {
+    height: 4px;
+    background-color: rgb(8, 8, 8);
+    width: 100%;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.menu-icon .bar1 {
+    top: 0;
+}
+
+.menu-icon .bar2 {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-icon .bar3 {
+    bottom: 0;
+}
+
+nav {
+    display: none;
+    opacity: 0;
+    transform: translateX(-100%); /* Start hidden off-screen */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 600%;
+    width: 250px; /* Adjust width for bubble effect */
+    background-color: #ffffff;
+    border-top-left-radius: 20px; /* Rounded corners for bubble effect */
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1000;
+    overflow: hidden;
+   
+}
+
+/* Navigation menu open state */
+nav.open {
+    display: block;
+    opacity: 1;
+    transform: translateX(0); /* Slide into view */
+    
+}
+
+/* Navigation menu list styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; /* Enable scrolling if needed */
+}
+
+/* Navigation menu item styles */
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #161616;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+    
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-left: 30px; /* Indicate active item with padding */
+    
+}
+
+@media (min-width: 768px) {
+    nav {
+        display: block;
+        opacity: 1;
+        transform: none; /* Remove transform for larger screens */
+        position: static;
+        width: auto; /* Default width */
+        height: auto; /* Default height */
+        background-color: transparent; /* Transparent background */
+        box-shadow: none; /* Remove shadow for larger screens */
+        border-radius: 0; /* Remove rounded corners for larger screens */
+    }
+
+    nav ul {
+        flex-direction: row; /* Horizontal layout */
+    }
+
+    nav ul li {
+        margin: 0 20px; /* Spacing between menu items */
+    }
+
+    nav ul li a {
+        padding: 15px 20px;
+    }
+
+    .menu-icon {
+        display: none; /* Hide menu icon on large screens */
+    }
+}
+
+
+
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px; /* Adjust for better alignment */
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px; /* Adjust for better alignment */
+}
+
+nav.open {
+    display: block;
+    position: absolute;
+    top: 80px;
+    right: 70px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 90px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Toggle button animation */
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px;
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px;
+}
+
+/* Auth buttons (Login/Register) */
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Common button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+}
+
+/* Light Blue Button */
+.btn-login {
+    background-color: #f5f5f5;
+    color: #333; /* Darker text color for contrast */
+}
+
+.btn-login:hover {
+    background-color: #a5abb1; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Deer White Button */
+.btn-register {
+    background-color: #4a90e2; /* Light blue color */
+}
+
+.btn-register:hover {
+    background-color: #e0e0e0; /* Slightly darker white on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+
+
+
+
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px; /* Adjust for better alignment */
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px; /* Adjust for better alignment */
+}
+
+nav.open {
+    display: block;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: rgb(100, 243, 253);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+main {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #5ce1e6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.exercise img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: linear-gradient(2deg, rgb(238, 246, 247), #42d6db);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #5ce1e6;
+}
+
+.progress-bar {
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.progress {
+    background-color: #8c52ff;
+    height: 20px;
+    width: 0;
+    transition: width 0.5s ease;
+}
+
+#break-container {
+    margin-top: 20px;
+}
+
+
+#start-workout-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#start-workout-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.start-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#start-workout-btn {
+    background: linear-gradient(2deg, rgb(238, 246, 247), #42d6db);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#start-workout-btn:hover {
+    background-color: #5e37b7;
+}
+
+
+
+
+
+
+.button {
+    padding: 12px 24px;
+    font-size: 18px;
+    background: linear-gradient(45deg, rgb(199, 214, 255), #007bff);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.5s ease;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Close button styles */
+.close-btn {
+    color: #555;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin-right: -10px;
+    margin-top: -10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Song list styles */
+#song-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#song-list li {
+    margin-bottom: 15px;
+}
+
+.song-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.song-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+}
+
+/* Spacing between song buttons */
+.song-item + .song-item {
+    margin-top: 10px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .song-button {
+        font-size: 14px;
+        padding: 15px;
+        width: calc(100% - 30px);
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    #song-list li {
+        margin-bottom: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#break-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-aligns items horizontally */
+    justify-content: center; /* Center-aligns items vertically */
+    height: 100vh; /* Full viewport height to center content vertically */
+    text-align: center;
+    margin: 0; /* Remove default margins */
+}
+
+#break-container h2 {
+    font-size: 1.5em;
+    margin: 0 0 20px 0; /* Margin at the bottom only */
+}
+
+#break-container img {
+    width: 90%; /* Large width relative to container */
+    height: auto;
+    max-width: 600px; /* Limit maximum width for larger screens */
+    max-height: 60vh; /* Limit maximum height based on viewport height */
+    margin: 20px 0;
+    border-radius: 8px; /* Optional: adds rounded corners to the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds shadow to the image */
+}
+
+#break-container button {
+    background-color: #4CAF50; /* Green background */
+    color: rgb(255, 255, 255); /* White text */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0; /* Margin to separate from image */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for the button */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#break-container button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 767px) {
+    #break-container img {
+        width: 95%; /* Almost full width on mobile screens */
+        max-height: 80vh; /* Larger height relative to viewport height */
+    }
+}
+
+
+
+#training-completed-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#training-completed-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#training-completed-section .completed.link {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #4ca1ff;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#training-completed-section .completed.link:hover {
+    background-color: #3b8bd4;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#exercise-timer {
+    display: none; /* Hide the timer initially */
+}
+
+
+
+
+
+.progress-bar {
+    width: 100%;
+    height: 30px; /* Increased height for better visibility of text */
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative; /* Allows for positioning of the text inside */
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background-color: #8c52ff;
+    transition: width 0.5s ease;
+    display: flex; /* Aligns the text inside the bar */
+    align-items: center; /* Centers the text vertically */
+    position: relative; /* Positions the text relative to the progress bar */
+}
+
+#calories-burned {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff; /* White color for visibility */
+    margin-left: 10px; /* Small margin from the left edge */
+    position: absolute; /* Keeps the text in place as it moves */
+    left: 10px; /* Initial position of the text */
+    transition: left 0.5s ease; /* Smooth transition for the text movement */
+}
+
+
+.progress-bar-container {
+    position: relative;
+    width: 100%; /* Ensure full width */
+}
+
+
+#calories-burned {
+    position: absolute;
+    /* other styles as needed */
+}
+
+
+
+
+
+.completed-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ffffff; /* Text color */
+    background-color: #4CAF50; /* Background color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.completed-link:hover {
+    background-color: #45a049; /* Darker green on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly darker shadow on hover */
+}
+
+.completed-link:active {
+    background-color: #3e8e41; /* Even darker green when clicked */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly lighter shadow on click */
+}
+           </style> 
+    </main>
+    <script src="/homeworkout/homework.Burn.400.calories/homework.Burn.400.calories.js"></script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+  width: 100%; /* Ensures the width is 100% of the viewport */
+  padding: 0; 
+    align-items: center;
+    min-height: 100vh; /* This ensures the body takes up the full height of the viewport */
+    justify-content: center;
+    
+    
+}
+
+* {
+    box-sizing: border-box; /* Makes sure padding and border are included in the width */
+  }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    height: 50px; /* Adjust the size of your logo image */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px; /* Adjust height to ensure space for bars */
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon .bar {
+    height: 4px;
+    background-color: rgb(8, 8, 8);
+    width: 100%;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.menu-icon .bar1 {
+    top: 0;
+}
+
+.menu-icon .bar2 {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-icon .bar3 {
+    bottom: 0;
+}
+
+nav {
+    display: none;
+    opacity: 0;
+    transform: translateX(-100%); /* Start hidden off-screen */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 800%;
+    width: 150px; /* Adjust width for bubble effect */
+    background-color: #ffffff;
+    border-top-left-radius: 20px; /* Rounded corners for bubble effect */
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1000;
+    overflow: hidden;
+   
+}
+
+/* Navigation menu open state */
+nav.open {
+    display: block;
+    opacity: 1;
+    transform: translateX(0); /* Slide into view */
+    
+}
+
+/* Navigation menu list styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; /* Enable scrolling if needed */
+}
+
+/* Navigation menu item styles */
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #161616;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+    
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-left: 30px; /* Indicate active item with padding */
+    
+}
+
+@media (min-width: 768px) {
+    nav {
+        display: block;
+        opacity: 1;
+        transform: none; /* Remove transform for larger screens */
+        position: static;
+        width: auto; /* Default width */
+        height: auto; /* Default height */
+        background-color: transparent; /* Transparent background */
+        box-shadow: none; /* Remove shadow for larger screens */
+        border-radius: 0; /* Remove rounded corners for larger screens */
+    }
+
+    nav ul {
+        flex-direction: row; /* Horizontal layout */
+    }
+
+    nav ul li {
+        margin: 0 20px; /* Spacing between menu items */
+    }
+
+    nav ul li a {
+        padding: 15px 20px;
+    }
+
+    .menu-icon {
+        display: none; /* Hide menu icon on large screens */
+    }
+}
+
+
+
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px; /* Adjust for better alignment */
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px; /* Adjust for better alignment */
+}
+
+nav.open {
+    display: block;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+main {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: #5ce1e6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.exercise img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+button {
+    background: linear-gradient(2deg, rgb(238, 246, 247), #42d6db);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #5ce1e6;
+}
+
+.progress-bar {
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.progress {
+    background-color: #8c52ff;
+    height: 20px;
+    width: 0;
+    transition: width 0.5s ease;
+}
+
+#break-container {
+    margin-top: 20px;
+}
+
+
+#start-workout-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#start-workout-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.start-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#start-workout-btn {
+    background: linear-gradient(2deg, rgb(238, 246, 247), #42d6db);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#start-workout-btn:hover {
+    background-color: #5e37b7;
+}
+
+
+
+
+
+
+.button {
+    padding: 12px 24px;
+    font-size: 18px;
+    background: linear-gradient(45deg, rgb(199, 214, 255), #007bff);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.5s ease;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Close button styles */
+.close-btn {
+    color: #555;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin-right: -10px;
+    margin-top: -10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Song list styles */
+#song-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#song-list li {
+    margin-bottom: 15px;
+}
+
+.song-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.song-button:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
+}
+
+/* Spacing between song buttons */
+.song-item + .song-item {
+    margin-top: 10px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .song-button {
+        font-size: 14px;
+        padding: 15px;
+        width: calc(100% - 30px);
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    #song-list li {
+        margin-bottom: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#break-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-aligns items horizontally */
+    justify-content: center; /* Center-aligns items vertically */
+    height: 100vh; /* Full viewport height to center content vertically */
+    text-align: center;
+    margin: 0; /* Remove default margins */
+}
+
+#break-container h2 {
+    font-size: 1.5em;
+    margin: 0 0 20px 0; /* Margin at the bottom only */
+}
+
+#break-container img {
+    width: 90%; /* Large width relative to container */
+    height: auto;
+    max-width: 600px; /* Limit maximum width for larger screens */
+    max-height: 60vh; /* Limit maximum height based on viewport height */
+    margin: 20px 0;
+    border-radius: 8px; /* Optional: adds rounded corners to the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds shadow to the image */
+}
+
+#break-container button {
+    background-color: #4CAF50; /* Green background */
+    color: rgb(255, 255, 255); /* White text */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 0; /* Margin to separate from image */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners for the button */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#break-container button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 767px) {
+    #break-container img {
+        width: 95%; /* Almost full width on mobile screens */
+        max-height: 80vh; /* Larger height relative to viewport height */
+    }
+}
+
+
+
+#training-completed-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#training-completed-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#training-completed-section .completed.link {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #4ca1ff;
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#training-completed-section .completed.link:hover {
+    background-color: #3b8bd4;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,418 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+  width: 100%; /* Ensures the width is 100% of the viewport */
+  padding: 0; 
+    align-items: center;
+    min-height: 100vh; /* This ensures the body takes up the full height of the viewport */
+    justify-content: center;
+    
+    
+}
+
+* {
+    box-sizing: border-box; /* Makes sure padding and border are included in the width */
+  }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    height: 50px; /* Adjust the size of your logo image */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px; /* Adjust height to ensure space for bars */
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon .bar {
+    height: 4px;
+    background-color: rgb(8, 8, 8);
+    width: 100%;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.menu-icon .bar1 {
+    top: 0;
+}
+
+.menu-icon .bar2 {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-icon .bar3 {
+    bottom: 0;
+}
+
+nav {
+    display: none;
+    opacity: 0;
+    transform: translateX(-100%); /* Start hidden off-screen */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 600%;
+    width: 250px; /* Adjust width for bubble effect */
+    background-color: #ffffff;
+    border-top-left-radius: 20px; /* Rounded corners for bubble effect */
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1000;
+    overflow: hidden;
+   
+}
+
+/* Navigation menu open state */
+nav.open {
+    display: block;
+    opacity: 1;
+    transform: translateX(0); /* Slide into view */
+    
+}
+
+/* Navigation menu list styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; /* Enable scrolling if needed */
+}
+
+/* Navigation menu item styles */
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #161616;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+    
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-left: 30px; /* Indicate active item with padding */
+    
+}
+
+@media (min-width: 768px) {
+    nav {
+        display: block;
+        opacity: 1;
+        transform: none; /* Remove transform for larger screens */
+        position: static;
+        width: auto; /* Default width */
+        height: auto; /* Default height */
+        background-color: transparent; /* Transparent background */
+        box-shadow: none; /* Remove shadow for larger screens */
+        border-radius: 0; /* Remove rounded corners for larger screens */
+    }
+
+    nav ul {
+        flex-direction: row; /* Horizontal layout */
+    }
+
+    nav ul li {
+        margin: 0 20px; /* Spacing between menu items */
+    }
+
+    nav ul li a {
+        padding: 15px 20px;
+    }
+
+    .menu-icon {
+        display: none; /* Hide menu icon on large screens */
+    }
+}
+
+
+
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px; /* Adjust for better alignment */
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px; /* Adjust for better alignment */
+}
+
+nav.open {
+    display: block;
+    position: absolute;
+    top: 80px;
+    right: 70px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 90px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Toggle button animation */
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px;
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px;
+}
+
+/* Auth buttons (Login/Register) */
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Common button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+}
+
+/* Light Blue Button */
+.btn-login {
+    background-color: #f5f5f5;
+    color: #333; /* Darker text color for contrast */
+}
+
+.btn-login:hover {
+    background-color: #357ABD; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Deer White Button */
+.btn-register {
+    background-color: #4a90e2; /* Light blue color */
+}
+
+.btn-register:hover {
+    background-color: #e0e0e0; /* Slightly darker white on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* General Styles */
+
+
+
+
+
+
+
+
+main {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+#category-selector {
+    margin-top: 20px;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.category-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 0;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.category-btn:hover {
+    transform: scale(1.1);
+}
+
+.category-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.category-item h2 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333; /* Change the text color as needed */
+}
+
+
+.recipe-list {
+    display: none; /* Hidden by default, displayed when category is selected */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.recipe-list.active {
+    display: flex;
+}
+
+.recipe {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.recipe img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.recipe-details {
+    padding: 5px;
+}
+
+.recipe-details span {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+button {
+    padding: 5px 10px;
+    background: linear-gradient(45deg, rgb(199, 214, 255), #007bff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Chart Container */
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+
+.recipe-preparation {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: none;
+}
+
+.view-recipe-btn {
+    margin-top: 5px;
+    background: linear-gradient(45deg, rgb(199, 214, 255), #000000);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.view-recipe-btn:hover {
+    background-color: #218838;
+}

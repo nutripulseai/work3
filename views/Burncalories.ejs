@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Library</title>
+    <link rel="stylesheet" href="/css/Burncalories.css">
+    <script defer src="/js/Burncalories.js"></script>
+    <link rel="manifest" href="/manifest.json">
+</head>
+
+
+<body>
+    
+    <header>
+        <div class="logo">
+            <img src="/imega/doworkoutnow mix.svg" alt="Logo Image">
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/homeworkout/work">Home Workout</a></li>
+                <li><a href="/ai-fitness-app/gptaifitness">AI Fitness App</a></li>
+                <li><a href="/menu-builder">menu builder</a></li>
+                <li><a href="/moreinformation1">About</a></li>
+                <li><a href="#bmr">BMR</a></li>
+                <% if (user) { %>
+                    <li><a href="/profile" id="settings-button">Profile</a></li>
+                <% } %>
+                <% if (!user) { %>
+                    <li class="auth-buttons">
+                        <a href="/auth/login" class="btn btn-login">Login</a>
+                        <a href="/auth/register" class="btn btn-register">Register</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="carousel-container">
+        <div class="carousel">
+            <a href="/homeworkout/work" class="category-circle">
+                <img src="/homeworkout" alt="Core">
+                <span>Core</span>
+            </a>
+            <a href="/burn-calories" class="category-circle">
+                <img src="/imega/Mass training (1).svg" alt="Chest">
+                <span>Chest</span>
+            </a>
+            <a href="back.html" class="category-circle">
+                <img src="/imega/Cardio Training.svg" alt="Back">
+                <span>Back</span>
+            </a>
+            <a href="shoulders.html" class="category-circle">
+                <img src="/imega/Flexibility and Mobility Training.svg" alt="Shoulders">
+                <span>Shoulders</span>
+            </a>
+           
+           
+        </div>
+    </div>
+
+    <div class="rectangle-section">
+        <div class="rectangle-link" style="background-image: url('/gypplanimg/AB.A.MASS.svg');">
+            <a href="/homeworkout/test2.html"></a>
+            <span></span>
+        </div>
+        
+    <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.200.calories.svg');">
+            <a href="/homeworkBurn200"></a>
+            <span></span>
+        </div>
+
+        <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.300.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn300"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+          
+          <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.400.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn400"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+
+          <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.500.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn500"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+
+
+          <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.600.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn600"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+
+          <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.700.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn700"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+
+          <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.800.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn800"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+
+          <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.900.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn900"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+
+          <div class="rectangle-link" style="background-image: url('/gypplanimg/homework.Burn.1000.calories.svg');">
+            <% if (user && user.subscriptionStatus === 'active') { %>
+              <!-- Show link only if user has an active subscription -->
+              <a href="/homeworkBurn1000"></a>
+            <% } else { %>
+              <!-- Display a message and redirect to /plan on click if the subscription is not active -->
+              <a href="/plan">
+                <p style="font-size: 40px; font-weight: bold;">
+                  🔒<br>
+                </p>
+              </a>
+            <% } %>
+            <span></span>
+          </div>
+          
+
+          
+          <div class="footer-copyright">
+            <button class="copyright-button">
+              &copy; 2024 DoWorkoutNow. All Rights Reserved.
+            </button>
+          </div>
+        
+       
+
+    </div>
+    <button id="install-button" style="display: none;">Add to Home Screen</button>
+    <script>
+        let deferredPrompt;
+    const installButton = document.getElementById('install-button');
+    
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installButton.style.display = 'block'; // Show the install button
+    });
+    
+    installButton.addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+          installButton.style.display = 'none'; // Hide the install button
+        });
+      }
+    });
+    
+    </script>
+
+<script src="works.js" defer></script>
+</body>
+</html>

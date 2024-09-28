@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Nutrition Menu Builder</title>
+    <link rel="stylesheet" href="/nutrition-menu-builder/css/style.css">
+</head>
+<body>
+    
+
+    <header>
+        <div class="logo">
+            <img src="/imega/doworkoutnow mix.svg" alt="Logo Image">
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/homeworkout/work">Home Workout</a></li>
+                <li><a href="/ai-fitness-app/gptaifitness">AI Fitness App</a></li>
+                <li><a href="/menu-builder">menu builder</a></li>
+                <li><a href="/moreinformation1">About</a></li>
+                <li><a href="#bmr">BMR</a></li>
+                <% if (user) { %>
+                    <li><a href="/profile" id="settings-button">Profile</a></li>
+                <% } %>
+                <% if (!user) { %>
+                    <li class="auth-buttons">
+                        <a href="/auth/login" class="btn btn-login">Login</a>
+                        <a href="/auth/register" class="btn btn-register">Register</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+    <div class="container">
+        <h1>Weekly Nutrition Menu Builder</h1>
+
+        <!-- Calorie Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Recipes</th>
+                    <th>Calories</th>
+                </tr>
+            </thead>
+            <tbody id="week-table">
+                <!-- Each day's row will be dynamically filled with recipes and calories -->
+                <tr>
+                    <td>Monday</td>
+                    <td id="monday-recipes"></td>
+                    <td id="monday-calories">0</td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td id="tuesday-recipes"></td>
+                    <td id="tuesday-calories">0</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td id="wednesday-recipes"></td>
+                    <td id="wednesday-calories">0</td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td id="thursday-recipes"></td>
+                    <td id="thursday-calories">0</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td id="friday-recipes"></td>
+                    <td id="friday-calories">0</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td id="saturday-recipes"></td>
+                    <td id="saturday-calories">0</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td id="sunday-recipes"></td>
+                    <td id="sunday-calories">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Total Weekly Calories: <span id="weekly-calories">0</span></h2>
+
+        <!-- Graph for Calorie Breakdown -->
+        <div class="chart-container">
+            <canvas id="caloriesChart"></canvas>
+        </div>
+
+        <!-- Available Recipes -->
+        <h2>Available Recipes</h2>
+        <div id="category-selector">
+            <div class="category-buttons">
+                <div class="category-item">
+                    <button class="category-btn" onclick="showCategory('breakfast')">
+                        <img src="/nutrition-menu-builder/imegafood/breakfast.jpg" alt="Breakfast">
+                    </button>
+                    <h2>Breakfast</h2>
+                </div>
+        
+                <div class="category-item">
+                    <button class="category-btn" onclick="showCategory('midday')">
+                        <img src="nutrition-menu-builder/imegafood/Lunch.jpg" alt="Midday Meal">
+                    </button>
+                    <h2>Lunch</h2>
+                </div>
+        
+                <div class="category-item">
+                    <button class="category-btn" onclick="showCategory('dinner')">
+                        <img src="nutrition-menu-builder/imegafood/dinner.jpg" alt="Dinner">
+                    </button>
+                    <h2>Dinner</h2>
+                </div>
+        
+                <div class="category-item">
+                    <button class="category-btn" onclick="showCategory('desserts')">
+                        <img src="nutrition-menu-builder/imegafood/desserts.jpg" alt="Desserts">
+                    </button>
+                    <h2>Desserts</h2>
+                </div>
+            </div>
+        </div>
+
+            <!-- Recipe Lists for Each Category -->
+            <div id="category-content">
+                <!-- Breakfast Recipes -->
+                <div class="recipe-list" id="breakfast-list" style="display: none;">
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Avocado and Egg Toast (Healthy).jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Avocado and Egg Toast (Healthy) - 350 Calories</span>
+                            <button onclick="addRecipeToDay('Avocado and Egg Toast', 350)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    1 slice whole grain bread.<br>
+                                    1/2 ripe avocado.<br>
+                                    1 large egg.<br>
+                                    1 tsp olive oil.<br>
+                                    Salt, pepper, and chili flakes to taste.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Toast the whole grain bread.<br>
+                                    Mash the avocado with a pinch of salt, and spread it on the toast.<br>
+                                    Heat olive oil in a small pan and fry the egg to your liking (sunny-side-up or over-easy).<br>
+                                    Place the fried egg on top of the avocado toast, season with salt, pepper, and chili flakes.<br>
+                                    Serve immediately.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 12g.<br>
+                                    Carbohydrates: 28g.<br>
+                                    Fat: 23g.<br>
+                                    Fiber: 8g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Greek Yogurt with Honey and Nuts (Healthy).jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Greek Yogurt with Honey and Nuts (Healthy)
+                                - Calories: 300</span>
+                            <button onclick="addRecipeToDay('Egg White Veggie Omelette', 300)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    1 cup plain Greek yogurt.<br>
+                                    1 tbsp honey.<br>
+                                    1/4 cup mixed nuts (almonds, walnuts, pistachios).<br>
+                                    1/4 cup fresh berries (optional).<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Spoon the Greek yogurt into a bowl.<br>
+                                    Drizzle honey on top of the yogurt.<br>
+                                    Add the mixed nuts and berries (if using) on top.<br>
+                                    Stir gently and enjoy.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 15g.<br>
+                                    Carbohydrates: 28g.<br>
+                                    Fat: 15g.<br>
+                                    Fiber: 4g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Banana Pancakes.jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Banana Pancakes (Diet-Friendly) - 320 Calories</span>
+                            <button onclick="addRecipeToDay('Banana Pancakes', 320)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    1 ripe banana.<br>
+                                    2 large eggs.<br>
+                                    1/4 cup oats.<br>
+                                    1/4 tsp cinnamon.<br>
+                                    1 tsp coconut oil (for cooking).<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Mash the banana in a bowl.<br>
+                                    Add the eggs, oats, and cinnamon, and mix until combined.<br>
+                                    Heat coconut oil in a skillet over medium heat.<br>
+                                    Pour small portions of the batter into the skillet, cooking for 2-3 minutes on each side until golden.<br>
+                                    Serve with a drizzle of honey or fresh berries.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 14g.<br>
+                                    Carbohydrates: 40g.<br>
+                                    Fat: 12g.<br>
+                                    Fiber: 6g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Veggie Scramble with Spinach and Feta (Healthy).jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Veggie Scramble with Spinach and Feta (Healthy) - 270 Calories</span>
+                            <button onclick="addRecipeToDay('Veggie Scramble with Spinach and Feta', 270)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    3 large eggs.<br>
+                                    1/4 cup chopped spinach.<br>
+                                    1/4 cup cherry tomatoes, halved.<br>
+                                    1 tbsp feta cheese.<br>
+                                    Salt and pepper to taste.<br>
+                                    1 tsp olive oil.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Heat olive oil in a skillet over medium heat.<br>
+                                    Add spinach and tomatoes, and sauté for 2 minutes.<br>
+                                    In a bowl, whisk the eggs with salt and pepper.<br>
+                                    Pour the egg mixture into the skillet and scramble until fully cooked.<br>
+                                    Sprinkle with feta cheese and serve hot.<br>
+                                    Nutritional Info:
+                                    <br>
+                                    Protein: 20g.<br>
+                                    Carbohydrates: 6g.<br>
+                                    Fat: 20g.<br>
+                                    Fiber: 3g.<br>
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Berry Smoothie Bowl (Diet-Friendly).webp" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Berry Smoothie Bowl (Diet-Friendly) - 300 Calories</span>
+                            <button onclick="addRecipeToDay('Berry Smoothie Bowl', 300)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    1/2 frozen banana.<br>
+                                    1/2 cup mixed berries (blueberries, strawberries, raspberries).<br>
+                                    1/2 cup unsweetened almond milk.<br>
+                                    1 tbsp chia seeds.<br>
+                                    1 tbsp almond butter.<br>
+                                    Toppings: granola, coconut flakes, more berries.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Blend the frozen banana, mixed berries, and almond milk until smooth.<br>
+                                    Pour the smoothie into a bowl.<br>
+                                    Top with chia seeds, almond butter, granola, and coconut flakes.<br>
+                                    Serve cold and enjoy with a spoon.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 8g.<br>
+                                    Carbohydrates: 45g.<br>
+                                    Fat: 15g.<br>
+                                    Fiber: 10g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Overnight Oats with Peanut Butter and Banana.jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Overnight Oats with Peanut Butter and Banana (Healthy) - 400 Calories</span>
+                            <button onclick="addRecipeToDay('Overnight Oats with Peanut Butter and Banana', 400)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    1/2 cup rolled oats.<br>
+                                    1/2 cup almond milk.<br>
+                                    1 tbsp peanut butter.<br>
+                                    1/2 banana, sliced.<br>
+                                    1 tsp honey.<br>
+                                    1 tsp chia seeds.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    In a jar or bowl, combine rolled oats, almond milk, and chia seeds.<br>
+                                    Stir in the peanut butter and honey.<br>
+                                    Cover and refrigerate overnight.<br>
+                                    In the morning, top with banana slices before serving.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 12g.<br>
+                                    Carbohydrates: 52g.<br>
+                                    Fat: 16g.<br>
+                                    Fiber: 10g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Avocado Toast with Poached Egg.jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Protein-Packed Breakfast Burrito (Mass-Building) - 500 Calories</span>
+                            <button onclick="addRecipeToDay('Protein-Packed Breakfast Burrito', 500)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    2 large eggs.<br>
+                                    2 slices turkey bacon.<br>
+                                    1/4 avocado, sliced.<br>
+                                    1/4 cup black beans.<br>
+                                    1 whole wheat tortilla.<br>
+                                    1 tbsp salsa.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Cook the turkey bacon in a skillet until crispy, then remove and set aside.<br>
+                                    In the same skillet, scramble the eggs.<br>
+                                    Warm the tortilla, and layer the scrambled eggs, turkey bacon, black beans, and avocado inside.<br>
+                                    Add salsa, roll the tortilla into a burrito, and serve hot.<br>
+                                    Nutritional Info:
+                                    <br>
+                                    Protein: 30g.<br>
+                                    Carbohydrates: 40g.<br>
+                                    Fat: 25g.<br>
+                                    Fiber: 10g.<br>
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Sweet Potato and Black Bean Breakfast Bowl.jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Sweet Potato and Black Bean Breakfast Bowl (Mass-Building) - 450 Calories</span>
+                            <button onclick="addRecipeToDay('Sweet Potato and Black Bean Breakfast Bowl', 450)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    1 small sweet potato, diced.<br>
+                                    1/4 cup black beans.<br>
+                                    1 large egg.<br>
+                                    1/4 avocado, diced.<br>
+                                    1 tbsp olive oil.<br>
+                                    1 tbsp salsa.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Sauté diced sweet potatoes in olive oil over medium heat until tender.<br>
+                                    Add black beans and heat through.<br>
+                                    In a separate pan, fry the egg to your liking.<br>
+                                    Serve the sweet potato mixture in a bowl, topped with the fried egg, avocado, and salsa.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 18g.<br>
+                                    Carbohydrates: 50g.<br>
+                                    Fat: 20g.<br>
+                                    Fiber: 10g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Egg White and Veggie Wrap (Diet-Friendly).jpg" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Egg White and Veggie Wrap (Diet-Friendly) - 250 Calories</span>
+                            <button onclick="addRecipeToDay('Egg White and Veggie Wrap', 250)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    3 large egg whites.<br>
+                                    1/4 cup chopped spinach.<br>
+                                    1/4 cup diced bell peppers.<br>
+                                    1 whole wheat tortilla.<br>
+                                    1 tbsp salsa.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    In a skillet, sauté spinach and bell peppers for 2-3 minutes.<br>
+                                    Add the egg whites, and scramble until fully cooked.<br>
+                                    Place the scrambled eggs and veggies in the tortilla.<br>
+                                    Add salsa and wrap tightly. Serve warm.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 15g.<br>
+                                    Carbohydrates: 30g.<br>
+                                    Fat: 5g.<br>
+                                    Fiber: 5g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Chia Pudding with Berries.webp" alt="Oatmeal with Berries">
+                        <div class="recipe-details">
+                            <span>Chia Pudding with Berries (Healthy) - 300 Calories</span>
+                            <button onclick="addRecipeToDay('Chia Pudding with Berries', 300)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+                                    <br>
+                                    1/4 cup chia seeds.<br>
+                                    1 cup unsweetened almond milk.<br>
+                                    1 tbsp maple syrup.<br>
+                                    1/2 cup mixed berries.<br>
+                                    Preparation:<br>
+                                    <br>
+                                    Mix chia seeds, almond milk, and maple syrup in a bowl or jar.<br>
+                                    Stir well, cover, and refrigerate overnight.<br>
+                                    In the morning, top with mixed berries before serving.<br>
+                                    Nutritional Info:<br>
+                                    <br>
+                                    Protein: 10g.<br>
+                                    Carbohydrates: 40g.<br>
+                                    Fat: 12g.<br>
+                                    Fiber: 12g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+            
+                    <!-- Add more breakfast recipes here -->
+                </div>
+ <!-- Midday Meal Recipes -->
+   <!-- Midday Meal Recipes -->
+    | <!-- Midday Meal Recipes -->
+     <!-- Midday Meal Recipes -->
+       <!-- Midday Meal Recipes -->
+         <!-- Midday Meal Recipes -->
+                <!-- Midday Meal Recipes -->
+                <div class="recipe-list" id="midday-list" style="display: none;">
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Grilled Chicken Salad with Avocado and Quinoa.webp" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Grilled Chicken Salad with Avocado and Quinoa (Healthy) - 450 Calories</span>
+                            <button onclick="addRecipeToDay('Grilled Chicken Salad with Avocado and Quinoa', 450)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+1 grilled chicken breast.<br>
+1/2 avocado, sliced.<br>
+1/2 cup cooked quinoa.<br>
+2 cups mixed greens.<br>
+1/4 cup cherry tomatoes, halved.<br>
+1 tbsp olive oil.<br>
+1 tbsp balsamic vinegar.<br>
+Salt and pepper to taste.<br>
+Preparation:<br>
+
+Slice the grilled chicken breast.<br>
+In a large bowl, combine mixed greens, quinoa, avocado, and cherry tomatoes.<br>
+Add the grilled chicken on top.<br>
+Drizzle with olive oil and balsamic vinegar.<br>
+Season with salt and pepper, toss, and serve.<br>
+Nutritional Info:
+
+Protein: 35g.<br>
+Carbohydrates: 30g.<br>
+Fat: 20g.<br>
+Fiber: 10g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+           
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Turkey and Veggie Stir-Fry.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Turkey and Veggie Stir-Fry (Diet) - 320 Calories</span>
+                            <button onclick="addRecipeToDay('Turkey and Veggie Stir-Fry', 320)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1/2 lb ground turkey.<br>
+                                    1 cup broccoli florets.<br>
+                                    1 red bell pepper, sliced.<br>
+                                    1/2 onion, sliced.<br>
+                                    1 tbsp soy sauce (low sodium).<br>
+                                    1 tbsp olive oil.<br>
+                                    1 clove garlic, minced.<br>
+                                    Salt and pepper to taste.<br>
+                                    Preparation:<br>
+                                    
+                                    Heat olive oil in a skillet over medium heat.<br>
+                                    Add ground turkey, season with salt and pepper, and cook until browned.<br>
+                                    Remove turkey and set aside.<br>
+                                    In the same skillet, sauté garlic, broccoli, bell pepper, and onion for 5-7 minutes.<br>
+                                    Add the turkey back in, drizzle with soy sauce, and cook for 2 more minutes.<br>
+                                    Serve hot.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 28g.<br>
+                                    Carbohydrates: 12g.<br>
+                                    Fat: 18g.<br>
+                                    Fiber: 4g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+           
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Shrimp and Avocado Tacos.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Shrimp and Avocado Tacos (Healthy) - 400 Calories</span>
+                            <button onclick="addRecipeToDay('Shrimp and Avocado Tacos', 400)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    6 large shrimp, peeled and deveined.<br>
+                                    2 small corn tortillas.<br>
+                                    1/2 avocado, diced.<br>
+                                    1/4 cup shredded cabbage.<br>
+                                    1 tbsp sour cream.<br>
+                                    1 tsp lime juice.<br>
+                                    1 tsp olive oil.<br>
+                                    Salt and pepper to taste.<br>
+                                    Preparation:<br>
+                                    
+                                    Heat olive oil in a skillet and cook shrimp for 2-3 minutes on each side until pink.<br>
+                                    Warm tortillas in a dry pan or microwave.<br>
+                                    In a small bowl, mix sour cream and lime juice.<br>
+                                    Assemble tacos: layer shrimp, avocado, cabbage, and a drizzle of lime sour cream.<br>
+                                    Serve immediately.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 22g.<br>
+                                    Carbohydrates: 35g.<br>
+                                    Fat: 18g.<br>
+                                    Fiber: 6g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+           
+           
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Lentil Soup with Spinach.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Lentil Soup with Spinach (Diet) - 280 Calories</span>
+                            <button onclick="addRecipeToDay('Lentil Soup with Spinach', 280)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1 cup lentils.<br>
+                                    4 cups vegetable broth.<br>
+                                    2 cups spinach.<br>
+                                    1 carrot, chopped.<br>
+                                    1 celery stalk, chopped.<br>
+                                    1 onion, chopped.<br>
+                                    1 tbsp olive oil.<br>
+                                    1 clove garlic, minced.<br>
+                                    1 tsp cumin.<br>
+                                    Salt and pepper to taste.<br>
+                                    Preparation:<br>
+                                    
+                                    Heat olive oil in a pot and sauté garlic, onion, carrot, and celery for 5 minutes.<br>
+                                    Add lentils and cumin, stir to coat.<br>
+                                    Pour in vegetable broth and bring to a boil.<br>
+                                    Lower heat and simmer for 25 minutes.<br>
+                                    Stir in spinach and cook for another 5 minutes.<br>
+                                    Serve hot.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 15g.<br>
+                                    Carbohydrates: 40g.<br>
+                                    Fat: 6g.<br>
+                                    Fiber: 15g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+           
+           
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Beef and Sweet Potato Bowl.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span> Beef and Sweet Potato Bowl (Mass-Building) - 520 Calories</span>
+                            <button onclick="addRecipeToDay(' Beef and Sweet Potato Bowl', 520)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1/4 lb lean ground beef.<br>
+                                    1 medium sweet potato, diced.<br>
+                                    1/4 cup black beans.<br>
+                                    1/4 avocado, sliced.<br>
+                                    1 tbsp olive oil.<br>
+                                    1 tbsp salsa.<br>
+                                    Salt and pepper to taste.<br>
+                                    Preparation:<br>
+                                    
+                                    Cook sweet potato in a skillet with olive oil until tender, about 10 minutes.<br>
+                                    In another pan, cook ground beef until browned.<br>
+                                    Assemble the bowl: add cooked sweet potatoes, beef, black beans, and avocado.<br>
+                                    Drizzle with salsa and serve.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 30g.<br>
+                                    Carbohydrates: 45g.<br>
+                                    Fat: 25g.<br>
+                                    Fiber: 10g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+           
+           
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Grilled Salmon with Asparagus.jpeg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Grilled Salmon with Asparagus (Healthy) - 350 Calories</span>
+                            <button onclick="addRecipeToDay('Grilled Salmon with Asparagus', 350)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1 salmon fillet (4 oz).<br>
+                                    1 cup asparagus spears.<br>
+                                    1 tbsp olive oil.<br>
+                                    1 tsp lemon juice.<br>
+                                    1 clove garlic, minced.<br>
+                                    Salt and pepper to taste.<br>
+                                    Preparation:<br>
+                                    
+                                    Preheat grill to medium heat.<br>
+                                    Drizzle salmon and asparagus with olive oil, season with salt, pepper, and garlic.<br>
+                                    Grill salmon for 4-5 minutes on each side until cooked through.<br>
+                                    Grill asparagus for 2-3 minutes until tender.<br>
+                                    Drizzle with lemon juice and serve.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 30g.<br>
+                                    Carbohydrates: 10g.<br>
+                                    Fat: 20g.<br>
+                                    Fiber: 4g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+           
+           
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Chicken Pesto Pasta.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Chicken Pesto Pasta (Mass-Building) - 600 Calories</span>
+                            <button onclick="addRecipeToDay('Chicken Pesto Pasta ', 600)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1 chicken breast, cooked and diced.<br>
+                                    1/2 cup whole wheat pasta.<br>
+                                    1 tbsp pesto sauce.<br>
+                                    1 tbsp olive oil.<br>
+                                    1/4 cup cherry tomatoes, halved.<br>
+                                    1 tbsp Parmesan cheese.<br>
+                                    Preparation:<br>
+                                    
+                                    Cook pasta according to package instructions.<br>
+                                    In a pan, heat olive oil and sauté cooked chicken and cherry tomatoes.<br>
+                                    Drain pasta and mix with pesto sauce.<br>
+                                    Toss the pasta with the chicken and tomatoes.<br>
+                                    Top with Parmesan and serve.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 40g.<br>
+                                    Carbohydrates: 50g.<br>
+                                    Fat: 25g.<br>
+                                    Fiber: 8g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+           
+           
+           
+                    <div class="recipe">
+                        <img src="images/grilled-chicken-salad.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Vegan Buddha Bowl (Healthy) - 400 Calories</span>
+                            <button onclick="addRecipeToDay('Vegan Buddha Bowl', 400)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1/2 cup cooked brown rice.<br>
+                                    1/4 cup chickpeas.<br>
+                                    1/4 avocado, sliced.<br>
+                                    1/4 cup shredded carrots.<br>
+                                    1/2 cup spinach.<br>
+                                    1 tbsp tahini sauce.<br>
+                                    1 tsp lemon juice.<br>
+                                    Preparation:<br>
+                                    
+                                    In a bowl, layer brown rice, chickpeas, avocado, carrots, and spinach.<br>
+                                    Drizzle with tahini sauce and lemon juice.<br>
+                                    Toss together and serve.<br>
+                                    Nutritional Info:<br>
+
+                                    Protein: 12g.<br>
+                                    Carbohydrates: 50g.<br>
+                                    Fat: 18g.<br>
+                                    Fiber: 10g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Chicken Burrito Bowl.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Chicken Burrito Bowl (Mass-Building) - 580 Calories</span>
+                            <button onclick="addRecipeToDay('Chicken Burrito Bowl', 580)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1 chicken breast, grilled and diced.<br>
+                                    1/2 cup brown rice.<br>
+                                    1/4 cup black beans.<br>
+                                    1/4 avocado, diced.<br>
+                                    2 tbsp salsa.<br>
+                                    1 tbsp sour cream.<br>
+                                    Salt and pepper to taste.<br>
+                                    Preparation:<br>
+                                    
+                                    Cook brown rice according to package instructions.<br>
+                                    Assemble bowl with rice, black beans, grilled chicken, avocado, and salsa.<br>
+                                    Add sour cream on top and serve.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 40g.<br>
+                                    Carbohydrates: 60g.<br>
+                                    Fat: 22g.<br>
+                                    Fiber: 12g.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="recipe">
+                        <img src="nutrition-menu-builder/imegafood/Caprese Chicken Sandwich.jpg" alt="Grilled Chicken Salad">
+                        <div class="recipe-details">
+                            <span>Caprese Chicken Sandwich (Healthy) - 450 Calories</span>
+                            <button onclick="addRecipeToDay('Caprese Chicken Sandwich', 450)">Add</button>
+                            <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                            <div class="recipe-preparation" style="display: none;">
+                                <p>Ingredients:<br>
+
+                                    1 chicken breast, grilled.<br>
+                                    2 slices whole grain bread.<br>
+                                    1 slice mozzarella cheese.<br>
+                                    2 slices tomato.<br>
+                                    2 basil leaves.<br>
+                                    1 tbsp balsamic glaze.<br>
+                                    Preparation:<br>
+                                    
+                                    Grill chicken breast until fully cooked.<br>
+                                    Assemble sandwich: layer mozzarella, tomato, basil, and grilled chicken on bread.<br>
+                                    Drizzle with balsamic glaze and serve.<br>
+                                    Nutritional Info:<br>
+                                    
+                                    Protein: 35g.<br>
+                                    Carbohydrates: 40g.<br>
+                                    Fat: 15g.<br>
+                                    Fiber: 8g.<br>
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+
+           </div>
+           
+           
+           
+          
+
+
+
+           
+           
+           <div class="recipe-list" id="dinner-list" style="display: none;">
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Grilled Salmon with Quinoa and Asparagus (Healthy).webp" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Grilled Salmon with Quinoa and Asparagus (Healthy) - 450 Calories</span>
+                    <button onclick="addRecipeToDay(' Grilled Salmon with Quinoa and Asparagus', 450)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 salmon fillet (150g).<br>
+                            1/2 cup quinoa, cooked.<br>
+                            6-8 asparagus spears.<br>
+                            1 tbsp olive oil.<br>
+                            1 clove garlic, minced.<br>
+                            Salt and pepper to taste.<br>
+                            Lemon wedges for serving.<br>
+                            Preparation:<br>
+                            <br>
+                            Preheat the grill to medium heat.<br>
+                            Drizzle the salmon with 1/2 tbsp olive oil, season with salt, pepper, and minced garlic.<br>
+                            Grill the salmon for 4-5 minutes on each side or until it flakes easily.<br>
+                            Toss the asparagus with the remaining olive oil, salt, and pepper, then grill for 3-4 minutes.<br>
+                            Serve the salmon with quinoa and grilled asparagus, garnished with lemon wedges.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 35g.<br>
+                            Carbohydrates: 38g.<br>
+                            Fat: 20g.<br>
+                            Fiber: 6g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+           
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Chicken Stir-Fry with Vegetables (Healthy).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Chicken Stir-Fry with Vegetables (Healthy) - 400 Calories</span>
+                    <button onclick="addRecipeToDay('Chicken Stir-Fry with Vegetables', 400)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 chicken breast (150g), sliced thin.<br>
+                            1/2 cup broccoli florets.<br>
+                            1/2 cup bell peppers, sliced.<br>
+                            1/2 cup carrots, sliced.<br>
+                            1 tbsp soy sauce.<br>
+                            1 tbsp olive oil.<br>
+                            1 clove garlic, minced.<br>
+                            1/2 tsp ginger, minced.<br>
+                            1/4 cup brown rice, cooked.<br>
+                            Preparation:<br>
+                            <br>
+                            Heat olive oil in a pan over medium heat.<br>
+                            Add the chicken and cook until browned, then set aside.<br>
+                            In the same pan, sauté garlic and ginger, followed by the vegetables.<br>
+                            Add the chicken back to the pan, pour in the soy sauce, and stir-fry until vegetables are tender.<br>
+                            Serve over brown rice.<br>
+                            Nutritional Info:<br>
+                            
+                            Protein: 32g.<br>
+                            Carbohydrates: 40g.<br>
+                            Fat: 15g.<br>
+                            Fiber: 6g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Zucchini Noodles with Pesto and Grilled Chicken (Low-Carb).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Zucchini Noodles with Pesto and Grilled Chicken (Low-Carb) - 350 Calories</span>
+                    <button onclick="addRecipeToDay('Zucchini Noodles with Pesto and Grilled Chicken', 350)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            2 medium zucchinis, spiralized.<br>
+                            1 chicken breast (150g), grilled.<br>
+                            2 tbsp basil pesto.<br>
+                            1 tbsp olive oil.<br>
+                            Salt and pepper to taste.<br>
+                            Parmesan cheese for garnish.<br>
+                            Preparation:<br>
+                            <br>
+                            Grill the chicken breast and slice it.<br>
+                            Heat olive oil in a pan and sauté the zucchini noodles for 2-3 minutes until tender.<br>
+                            Toss the noodles with basil pesto and grilled chicken.<br>
+                            Serve with grated Parmesan on top.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 28g.<br>
+                            Carbohydrates: 10g.<br>
+                            Fat: 20g.<br>
+                            Fiber: 4g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Turkey Meatballs with Marinara and Whole Wheat Spaghetti.jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Turkey Meatballs with Marinara and Whole Wheat Spaghetti (Hearty) - 500 Calories</span>
+                    <button onclick="addRecipeToDay('Turkey Meatballs with Marinara and Whole Wheat Spaghetti', 500)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            200g ground turkey.<br>
+                            1/4 cup breadcrumbs.<br>
+                            1 egg.<br>
+                            1/4 cup grated Parmesan.<br>
+                            1 cup marinara sauce.<br>
+                            1/2 cup whole wheat spaghetti, cooked.<br>
+                            1 tbsp olive oil.<br>
+                            Salt and pepper to taste.<br>
+                            Preparation:<br>
+                            <br>
+                            Mix the turkey, breadcrumbs, egg, Parmesan, salt, and pepper in a bowl. Form into meatballs.<br>
+                            Heat olive oil in a pan and brown the meatballs on all sides.<br>
+                            Add marinara sauce to the pan and simmer for 10-12 minutes until meatballs are cooked through.<br>
+                            Serve the meatballs over cooked whole wheat spaghetti.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 35g.<br>
+                            Carbohydrates: 50g.<br>
+                            Fat: 20g.<br>
+                            Fiber: 8g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Stuffed Bell Peppers (Healthy).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Stuffed Bell Peppers (Healthy) - 500 Calories</span>
+                    <button onclick="addRecipeToDay('Grilled Chicken Salad', 500)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>
+                            Ingredients:<br>
+                            <br>
+2 large bell peppers.<br>
+150g ground beef or turkey.<br>
+1/2 cup cooked brown rice.<br>
+1/4 cup black beans.<br>
+1/4 cup corn.<br>
+1/4 cup diced tomatoes.<br>
+1 tsp cumin.<br>
+1/4 cup shredded cheddar cheese.<br>
+Preparation:<br>
+<br>
+Preheat the oven to 375°F (190°C). Cut the tops off the bell peppers and remove the seeds.<br>
+In a skillet, cook the ground beef with cumin until browned, then mix in rice, beans, corn, and tomatoes.<br>
+Stuff the peppers with the mixture and top with shredded cheese.<br>
+Bake for 25-30 minutes until the peppers are tender.<br>
+Nutritional Info:<br>
+<br>
+Protein: 30g.<br>
+Carbohydrates: 45g.<br>
+Fat: 12g.<br>
+Fiber: 8g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Baked Lemon Herb Chicken with Sweet Potatoes.webp" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Baked Lemon Herb Chicken with Sweet Potatoes (Mass-Building) - 550 Calories</span>
+                    <button onclick="addRecipeToDay('Baked Lemon Herb Chicken with Sweet Potatoes', 550)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 chicken thigh (bone-in, skin on).<br>
+                            1 large sweet potato, cubed.<br>
+                            1 tbsp olive oil.<br>
+                            1 clove garlic, minced.<br>
+                            1 tsp lemon zest.<br>
+                            1 tsp rosemary.<br>
+                            Salt and pepper to taste.<br>
+                            Preparation:<br>
+                            <br>
+                            Preheat the oven to 400°F (200°C).<br>
+                            Toss sweet potatoes in olive oil, garlic, rosemary, salt, and pepper.<br>
+                            Place the chicken and sweet potatoes on a baking sheet. Season the chicken with salt, pepper, and lemon zest.<br>
+                            Bake for 30-35 minutes until the chicken is fully cooked and sweet potatoes are tender.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 35g.<br>
+                            Carbohydrates: 60g.<br>
+                            Fat: 20g.<br>
+                            Fiber: 8g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Shrimp Tacos with Mango Salsa (Light).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Shrimp Tacos with Mango Salsa (Light) - 400 Calories</span>
+                    <button onclick="addRecipeToDay('Shrimp Tacos with Mango Salsa', 400)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            200g shrimp, peeled and deveined.<br>
+                            4 small corn tortillas.<br>
+                            1/2 mango, diced.<br>
+                            1/4 cup red onion, diced.<br>
+                            1/4 cup cilantro, chopped.<br>
+                            1 tbsp olive oil.<br>
+                            1 lime, juiced.<br>
+                            Salt and pepper to taste.<br>
+                            Preparation:<br>
+                            <br>
+                            Heat olive oil in a pan and cook the shrimp for 3-4 minutes per side until opaque. Season with salt and pepper.<br>
+                            In a bowl, combine mango, onion, cilantro, lime juice, and a pinch of salt.<br>
+                            Warm the tortillas and assemble with shrimp and mango salsa.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 25g.<br>
+                            Carbohydrates: 40g.<br>
+                            Fat: 15g.<br>
+                            Fiber: 6g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Baked Cod with Roasted Vegetables (Low-Calorien wedge).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Baked Cod with Roasted Vegetables (Low-Calorie) - 350 Calories</span>
+                    <button onclick="addRecipeToDay('Baked Cod with Roasted Vegetables', 350)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 cod fillet (150g).<br>
+                            1/2 cup cherry tomatoes.<br>
+                            1/2 cup zucchini, sliced.<br>
+                            1/4 cup red onion, sliced.<br>
+                            1 tbsp olive oil.<br>
+                            Salt, pepper, and thyme to taste.<br>
+                            1 lemon wedge.<br>
+                            Preparation:<br>
+                            <br>
+                            Preheat the oven to 375°F (190°C).<br>
+                            Place the cod on a baking sheet and season with salt, pepper, and thyme.<br>
+                            Toss the vegetables with olive oil and spread them around the cod.<br>
+                            Bake for 15-20 minutes until the fish flakes easily with a fork.<br>
+                            Serve with a squeeze of lemon.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 28g.<br>
+                            Carbohydrates: 15g.<br>
+                            Fat: 15g.<br>
+                            Fiber: 5g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Beef Stir-Fry with Broccoli.jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Beef Stir-Fry with Broccoli (Mass-Building) - 600 Calories</span>
+                    <button onclick="addRecipeToDay('Beef Stir-Fry with Broccoli', 600)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            200g beef sirloin, sliced thin.<br>
+                            1/2 cup broccoli florets.<br>
+                            1/2 cup bell peppers, sliced.<br>
+                            1 tbsp soy sauce.<br>
+                            1 tbsp sesame oil.<br>
+                            1 clove garlic, minced.<br>
+                            1/2 cup jasmine rice, cooked.<br>
+                            Preparation:<br>
+                            <br>
+                            Heat sesame oil in a pan and cook the beef until browned, then set aside.<br>
+                            In the same pan, sauté garlic and vegetables for 3-4 minutes.<br>
+                            Add the beef back to the pan, stir in soy sauce, and cook for another 2 minutes.<br>
+                            Serve over jasmine rice.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 35g.<br>
+                            Carbohydrates: 60g.<br>
+                            Fat: 25g.<br>
+                            Fiber: 6g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="recipe">
+                <img src="images/grilled-chicken-salad.jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Vegetarian Buddha Bowl (Healthy) - 450 Calories</span>
+                    <button onclick="addRecipeToDay('Grilled Chicken Salad', 450)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1/2 cup quinoa, cooked.<br>
+                            1/2 cup chickpeas.<br>
+                            1/4 cup roasted sweet potatoes.<br>
+                            1/4 avocado, sliced.<br>
+                            1/4 cup spinach.<br>
+                            1 tbsp tahini.<br>
+                            1 tbsp olive oil.<br>
+                            Lemon juice to taste.<br>
+                            Preparation:<br>
+                            <br>
+                            Arrange the quinoa, chickpeas, sweet potatoes, avocado, and spinach in a bowl.<br>
+                            Drizzle with olive oil, tahini, and lemon juice.<br>
+                            Toss lightly and serve.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 18g.<br>
+                            Carbohydrates: 50g.<br>
+                            Fat: 20g.<br>
+                            Fiber: 10g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+           
+        
+
+
+
+
+
+
+
+
+
+        <div class="recipe-list" id="desserts-list" style="display: none;">
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Avocado Chocolate Mousse.jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Avocado Chocolate Mousse (Healthy) - 250 Calories</span>
+                    <button onclick="addRecipeToDay(' Avocado Chocolate Mousse', 250)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 ripe avocado.<br>
+                            2 tbsp unsweetened cocoa powder.<br>
+                            2 tbsp honey or maple syrup.<br>
+                            1/4 cup almond milk.<br>
+                            1/2 tsp vanilla extract.<br>
+                            Preparation:<br>
+                            <br>
+                            In a blender, combine the avocado, cocoa powder, honey, almond milk, and vanilla extract.<br>
+                            Blend until smooth and creamy.<br>
+                            Chill in the refrigerator for 30 minutes before serving.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 3g.<br>
+                            Carbohydrates: 30g.<br>
+                            Fat: 15g.<br>
+                            Fiber: 8g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Greek Yogurt with Honey and Berries (Low-Calorie).webp" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Greek Yogurt with Honey and Berries (Low-Calorie) - 180 Calories</span>
+                    <button onclick="addRecipeToDay('Greek Yogurt with Honey and Berries', 180)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1/2 cup Greek yogurt.<br>
+                            1 tbsp honey.<br>
+                            1/4 cup mixed berries (blueberries, raspberries, strawberries).<br>
+                            1 tsp chia seeds (optional).<br>
+                            Preparation:<br>
+                            <br>
+                            Spoon the Greek yogurt into a bowl.<br>
+                            Drizzle honey on top.<br>
+                            Add mixed berries and sprinkle with chia seeds.<br>
+                            Serve chilled.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 10g.<br>
+                            Carbohydrates: 25g.<br>
+                            Fat: 4g.<br>
+                            Fiber: 3g.<br>
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Baked Cinnamon Apples (Healthy).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Baked Cinnamon Apples (Healthy) - 150 Calories</span>
+                    <button onclick="addRecipeToDay('Baked Cinnamon Apples', 150)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            2 medium apples, cored and sliced.<br>
+                            1 tsp cinnamon.<br>
+                            1 tbsp maple syrup.<br>
+                            1/4 cup walnuts, chopped.<br>
+                            Preparation:<br>
+                            <br>
+                            Preheat the oven to 350°F (175°C).<br>
+                            Toss the apple slices with cinnamon and maple syrup.<br>
+                            Place apples in a baking dish and sprinkle with chopped walnuts.<br>
+                            Bake for 20-25 minutes until apples are tender.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 2g.<br>
+                            Carbohydrates: 28g.<br>
+                            Fat: 6g.<br>
+                            Fiber: 5g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Chia Pudding with Almond Milk and Berries (Vegan).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Chia Pudding with Almond Milk and Berries (Vegan) - 200 Calories</span>
+                    <button onclick="addRecipeToDay('Chia Pudding with Almond Milk and Berries', 200)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            3 tbsp chia seeds.<br>
+                            1 cup unsweetened almond milk.<br>
+                            1 tbsp maple syrup.<br>
+                            1/4 cup mixed berries.<br>
+                            Preparation:<br>
+                            <br>
+                            In a bowl, combine chia seeds, almond milk, and maple syrup.<br>
+                            Stir well and let it sit for 10 minutes, then stir again to break up any clumps.<br>
+                            Cover and refrigerate for 4 hours or overnight.<br>
+                            Top with berries before serving.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 5g.<br>
+                            Carbohydrates: 15g.<br>
+                            Fat: 12g.<br>
+                            Fiber: 10g.<br>
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Banana Nice Cream (Vegan).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Banana Nice Cream (Vegan) - 150 Calories</span>
+                    <button onclick="addRecipeToDay('Banana Nice Cream ', 150)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p> Ingredients:<br>
+                            <br>
+                            2 ripe bananas, sliced and frozen.<br>
+                            1 tbsp almond butter.<br>
+                            1 tsp vanilla extract.<br>
+                            Preparation:<br>
+                            <br>
+                            Place the frozen bananas in a blender.<br>
+                            Add almond butter and vanilla extract.<br>
+                            Blend until creamy, scraping down the sides as needed.<br>
+                            Serve immediately for a soft-serve texture or freeze for 30 minutes for a firmer texture.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 2g.<br>
+                            Carbohydrates: 30g.<br>
+                            Fat: 4g.<br>
+                            Fiber: 3g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Dark Chocolate Dipped Strawberries (Indulgent).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Dark Chocolate Dipped Strawberries (Indulgent) - 120 kcal per 5 strawberries</span>
+                    <button onclick="addRecipeToDay('Dark Chocolate Dipped Strawberries', 120)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            10 large strawberries.<br>
+                            1/4 cup dark chocolate chips (70% or higher cacao).<br>
+                            1 tsp coconut oil.<br>
+                            Preparation:<br>
+                            <br>
+                            Melt the dark chocolate and coconut oil in a double boiler or microwave.<br>
+                            Dip each strawberry halfway into the chocolate.<br>
+                            Place the dipped strawberries on a parchment-lined tray and refrigerate for 30 minutes.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 2g.<br>
+                            Carbohydrates: 18g.<br>
+                            Fat: 7g.<br>
+                            Fiber: 4g.<br>
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Coconut Macaroons (Gluten-Free).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Coconut Macaroons (Gluten-Free)
+                        - Calories: 130 kcal per macaroon</span>
+                    <button onclick="addRecipeToDay('Coconut Macaroons (Gluten-Free)', 130)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 1/2 cups shredded coconut.<br>
+                            2 egg whites.<br>
+                            1/4 cup honey or maple syrup.<br>
+                            1 tsp vanilla extract.<br>
+                            Preparation:<br>
+                            <br>
+                            Preheat the oven to 350°F (175°C).<br>
+                            In a bowl, whisk the egg whites until foamy.<br>
+                            Fold in the shredded coconut, honey, and vanilla extract.<br>
+                            Drop spoonfuls of the mixture onto a lined baking sheet.<br>
+                            Bake for 15-20 minutes until golden brown.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 2g.<br>
+                            Carbohydrates: 15g.<br>
+                            Fat: 9g.<br>
+                            Fiber: 2g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Peanut Butter Oat Bites (No-Bake).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span> Peanut Butter Oat Bites (No-Bake) - Calories: 100 kcal per bite</span>
+                    <button onclick="addRecipeToDay(' Peanut Butter Oat Bites', 100)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 cup rolled oats.<br>
+                            1/4 cup peanut butter.<br>
+                            2 tbsp honey.<br>
+                            1/4 cup dark chocolate chips.<br>
+                            1 tbsp chia seeds.<br>
+                            Preparation:<br>
+                            <br>
+                            In a bowl, combine oats, peanut butter, honey, chocolate chips, and chia seeds.<br>
+                            Mix well until combined.<br>
+                            Roll into bite-sized balls and refrigerate for 30 minutes before serving.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 3g.<br>
+                            Carbohydrates: 12g.<br>
+                            Fat: 5g.<br>
+                            Fiber: 2g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Apple Cinnamon Quinoa Pudding.jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Apple Cinnamon Quinoa Pudding (Protein-Rich) - 220 Calories</span>
+                    <button onclick="addRecipeToDay('Apple Cinnamon Quinoa Pudding', 220)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1/2 cup cooked quinoa.<br>
+                            1/2 cup almond milk.<br>
+                            1 apple, diced.<br>
+                            1 tsp cinnamon.<br>
+                            1 tbsp maple syrup.<br>
+                            Preparation:<br>
+                            <br>
+                            In a saucepan, combine cooked quinoa, almond milk, apple, cinnamon, and maple syrup.<br>
+                            Simmer over low heat for 5-7 minutes until the apple is tender and the mixture thickens.<br>
+                            Serve warm or chilled.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 6g.<br>
+                            Carbohydrates: 38g.<br>
+                            Fat: 4g.<br>
+                            Fiber: 6g.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="recipe">
+                <img src="nutrition-menu-builder/imegafood/Frozen Yogurt Bark with Berries (Low-Calorie).jpg" alt="Grilled Chicken Salad">
+                <div class="recipe-details">
+                    <span>Frozen Yogurt Bark with Berries (Low-Calorie) - Calories: 100 kcal per piece</span>
+                    <button onclick="addRecipeToDay('Frozen Yogurt Bark with Berries ', 100)">Add</button>
+                    <button class="view-recipe-btn" onclick="toggleRecipeDetails(this)">View Recipe</button>
+                    <div class="recipe-preparation" style="display: none;">
+                        <p>Ingredients:<br>
+                            <br>
+                            1 cup Greek yogurt.<br>
+                            1 tbsp honey.<br>
+                            1/4 cup mixed berries.<br>
+                            1 tbsp chopped nuts (optional).<br>
+                            Preparation:<br>
+                            <br>
+                            Spread the Greek yogurt on a parchment-lined baking sheet.<br>
+                            Drizzle with honey and sprinkle berries and nuts on top.<br>
+                            Freeze for 2-3 hours until firm.<br>
+                            Break into pieces and serve.<br>
+                            Nutritional Info:<br>
+                            <br>
+                            Protein: 5g.<br>
+                            Carbohydrates: 12g.<br>
+                            Fat: 3g.<br>
+                            Fiber: 2g.<br>
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+            </div>
+
+
+        
+
+        </div>
+ </div>
+              
+
+   
+                <!-- Add more categories with recipes as needed... -->
+            </div>
+       
+</main>
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Include JavaScript -->
+<script src="/nutrition-menu-builder/js/nutrition.js"></script>
+<script src="/nutrition-menu-builder/js/nutrition.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit AI Chat</title>
+    <link rel="stylesheet" href="/css/gptaifitness.css">
+    <script defer src="/js/gptaifitness.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/imega/doworkoutnow mix.svg" alt="Logo Image">
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/homeworkout/work">Home Workout</a></li>
+                <li><a href="/ai-fitness-app/gptaifitness">AI Fitness App</a></li>
+                <li><a href="/menu-builder">menu builder</a></li>
+                <li><a href="/moreinformation1">About</a></li>
+                <li><a href="#bmr">BMR</a></li>
+                <% if (user) { %>
+                    <li><a href="/profile" id="settings-button">Profile</a></li>
+                <% } %>
+                <% if (!user) { %>
+                    <li class="auth-buttons">
+                        <a href="/auth/login" class="btn btn-login">Login</a>
+                        <a href="/auth/register" class="btn btn-register">Register</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="chat-container">
+            <div id="messages"></div>
+            <div id="loading" class="loading" style="display: none;">
+                <span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+            </div>
+            <div id="input-container">
+                <input type="text" id="input" placeholder="Type a message..." />
+                <button id="send-button" onclick="sendMessage()">Send</button>
+            </div>
+            <!-- Credit Section -->
+            <div id="credit-container">
+                <img src="/imega/doWorkoutNow LOGO.svg" alt="Logo" class="credit-logo">
+                <p class="credit-text">Built by <span class="logo-text">doworkoutnow</span></p>
+            </div>
+        </div>
+    </main>
+    
+    <script src="/ai-fitness-app/gptaifitness.js"></script>
+</body>
+</html>

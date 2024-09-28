@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Do Workout Now</title>
+    
+    <header>
+        <div class="logo">
+            <img src="/imega/doworkoutnow mix.svg" alt="Logo Image">
+        </div>
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+        </div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/homeworkout/work">Home Workout</a></li>
+                <li><a href="/ai-fitness-app/gptaifitness">AI Fitness App</a></li>
+                <li><a href="/menu-builder">menu builder</a></li>
+                <li><a href="/moreinformation1">About</a></li>
+                <li><a href="/plan">plan</a></li>
+                <li><a href="#bmr">BMR</a></li>
+                <% if (user) { %>
+                    <li><a href="/profile" id="settings-button">Profile</a></li>
+                <% } %>
+                <% if (!user) { %>
+                    <li class="auth-buttons">
+                        <a href="/auth/login" class="btn btn-login">Login</a>
+                        <a href="/auth/register" class="btn btn-register">Register</a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+    <style>
+       
+       body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+  width: 100%; /* Ensures the width is 100% of the viewport */
+  padding: 0; 
+    align-items: center;
+    min-height: 100vh; /* This ensures the body takes up the full height of the viewport */
+    justify-content: center;
+    
+    
+}
+
+* {
+    box-sizing: border-box; /* Makes sure padding and border are included in the width */
+  }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    height: 50px; /* Adjust the size of your logo image */
+    margin-right: 10px; /* Space between the image and text */
+}
+
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px; /* Adjust height to ensure space for bars */
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.menu-icon .bar {
+    height: 4px;
+    background-color: rgb(8, 8, 8);
+    width: 100%;
+    transition: all 0.3s ease;
+    position: absolute;
+}
+
+.menu-icon .bar1 {
+    top: 0;
+}
+
+.menu-icon .bar2 {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.menu-icon .bar3 {
+    bottom: 0;
+}
+
+nav {
+    display: none;
+    opacity: 0;
+    transform: translateX(-100%); /* Start hidden off-screen */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 600%;
+    width: 250px; /* Adjust width for bubble effect */
+    background-color: #ffffff;
+    border-top-left-radius: 20px; /* Rounded corners for bubble effect */
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1000;
+    overflow: hidden;
+   
+}
+
+/* Navigation menu open state */
+nav.open {
+    display: block;
+    opacity: 1;
+    transform: translateX(0); /* Slide into view */
+    
+}
+
+/* Navigation menu list styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto; /* Enable scrolling if needed */
+}
+
+/* Navigation menu item styles */
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: #161616;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+    
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-left: 30px; /* Indicate active item with padding */
+    
+}
+
+@media (min-width: 768px) {
+    nav {
+        display: block;
+        opacity: 1;
+        transform: none; /* Remove transform for larger screens */
+        position: static;
+        width: auto; /* Default width */
+        height: auto; /* Default height */
+        background-color: transparent; /* Transparent background */
+        box-shadow: none; /* Remove shadow for larger screens */
+        border-radius: 0; /* Remove rounded corners for larger screens */
+    }
+
+    nav ul {
+        flex-direction: row; /* Horizontal layout */
+    }
+
+    nav ul li {
+        margin: 0 20px; /* Spacing between menu items */
+    }
+
+    nav ul li a {
+        padding: 15px 20px;
+    }
+
+    .menu-icon {
+        display: none; /* Hide menu icon on large screens */
+    }
+}
+
+
+
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px; /* Adjust for better alignment */
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px; /* Adjust for better alignment */
+}
+
+nav.open {
+    display: block;
+    position: absolute;
+    top: 80px;
+    right: 70px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 90px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Toggle button animation */
+.open .bar1 {
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -2px;
+}
+
+.open .bar2 {
+    opacity: 0;
+}
+
+.open .bar3 {
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -2px;
+}
+
+/* Auth buttons (Login/Register) */
+.auth-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Common button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, padding-left 0.3s ease; /* Smooth transition */
+}
+
+/* Light Blue Button */
+.btn-login {
+    background-color: #f5f5f5;
+    color: #333; /* Darker text color for contrast */
+}
+
+.btn-login:hover {
+    background-color: #a5abb1; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Deer White Button */
+.btn-register {
+    background-color: #4a90e2; /* Light blue color */
+}
+
+.btn-register:hover {
+    background-color: #e0e0e0; /* Slightly darker white on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+
+
+
+
+        h1, h2, h3 {
+            color: #4a90e2;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        h3 {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+        p {
+            font-size: 16px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px #ccc;
+        }
+    </style>
+
+<div class="container">
+    <h1>Terms of Service</h1>
+    <p><strong>Effective Date: [Insert Date]</strong></p>
+
+    <p>Welcome to DoWorkoutNow! These Terms of Service ("Terms") govern your use of our website (https://doworkoutnow.com) and the services provided by DoWorkoutNow, including personalized nutrition menus, workout routines, exercise software, and subscription services. By accessing or using our website, you agree to these Terms. If you do not agree with any part of these Terms, please do not use our services.</p>
+
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing or using DoWorkoutNow services, you agree to be bound by these Terms, our Privacy Policy, and any other applicable agreements. You must be at least 18 years of age to use our services.</p>
+
+    <h2>2. Subscription Services</h2>
+    <p>DoWorkoutNow offers a monthly subscription service for $9.90 per month, which provides access to personalized nutrition and workout plans. By subscribing, you agree to provide accurate payment information and allow us to charge your payment method on a recurring basis.</p>
+
+    <h3>2.1 Cancellations</h3>
+    <p>You may cancel your subscription at any time. Cancellation requests should be made before the next billing cycle to avoid charges for the next month. Upon cancellation, you will continue to have access to the service until the end of the current billing period.</p>
+
+    <h3>2.2 Refunds</h3>
+    <p>Refunds are generally not provided. However, if you experience any issues with your subscription, you may contact our support team at <a href="mailto:doworkoutnowhelp@gmail.com">doworkoutnowhelp@gmail.com</a> for assistance.</p>
+
+    <h2>3. Account Registration</h2>
+    <p>To access personalized services, you must create an account. You are responsible for maintaining the confidentiality of your account information, including your username and password, and for all activities that occur under your account.</p>
+
+    <h2>4. Payment Processing</h2>
+    <p>All payments are securely processed through PayPal. We do not store your payment details directly. By using PayPal, you agree to their terms and conditions. Any billing disputes should be addressed directly with our support team or PayPal.</p>
+
+    <h2>5. Personalization of Services</h2>
+    <p>Our services, including nutrition and workout plans, are personalized based on the information you provide. You agree to provide accurate and up-to-date information so we can offer effective recommendations.</p>
+
+    <h2>6. Use of Exercise Software</h2>
+    <p>Our website provides exercise software that allows you to follow workout routines on your phone. You acknowledge that physical activities come with inherent risks, and you are responsible for exercising safely. Consult a healthcare professional before beginning any new exercise program.</p>
+
+    <h2>7. Intellectual Property</h2>
+    <p>All content, software, and services provided by DoWorkoutNow, including logos, graphics, and trademarks, are the intellectual property of DoWorkoutNow or our licensors. You agree not to copy, modify, distribute, or reverse-engineer any part of our services without permission.</p>
+
+    <h2>8. Prohibited Activities</h2>
+    <p>You agree not to engage in any of the following activities:</p>
+    <ul>
+        <li>Using the services for unlawful purposes.</li>
+        <li>Attempting to hack or disrupt the website’s functionality.</li>
+        <li>Sharing or posting false or misleading information.</li>
+        <li>Sharing your account with others or using multiple accounts.</li>
+    </ul>
+
+    <h2>9. Limitation of Liability</h2>
+    <p>DoWorkoutNow is not liable for any damages or injuries that result from your use of our services, including personalized workout plans or nutritional recommendations. You agree to use the website and services at your own risk.</p>
+
+    <h2>10. Breach of Terms</h2>
+    <p>If you breach any part of these Terms, DoWorkoutNow reserves the right to suspend or terminate your account and access to our services. In the event of such a breach, no refunds will be provided.</p>
+
+    <h2>11. Modifications to Terms</h2>
+    <p>We may update these Terms from time to time. When we do, we will notify you by updating the "Effective Date" at the top of this page. You should review these Terms regularly to stay informed of any changes.</p>
+
+    <h2>12. Contact Information</h2>
+    <p>If you have any questions about these Terms or your use of our services, please contact us at <a href="mailto:doworkoutnowhelp@gmail.com">doworkoutnowhelp@gmail.com</a>.</p>
+</div>
+
+</body>
+</html>

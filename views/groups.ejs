@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groups</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Groups</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/profile">Profile</a>
+            <a href="/groups">Groups</a>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Available Groups</h2>
+        <ul>
+            <% groups.forEach(group => { %>
+                <li>
+                    <h3><%= group.name %></h3>
+                    <p>Created by: <%= group.creator %></p>
+                    <!-- You can add more details and actions here -->
+                </li>
+            <% }) %>
+        </ul>
+    </main>
+</body>
+</html>
